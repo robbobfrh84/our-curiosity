@@ -1,15 +1,4 @@
-### After React front end. Starting with Node.
-
-- Before moving files around, in Atom > Preferences > packages > tree-view
-  - turn off "hide ignored Names"
-  - Because we want to move `.git` folder `package-lock.json`.... etc..
-- I create a `client` folder on the root, and put in everything....
-  - Except `_admin`
-  - Except `.gitignore`
-  - Except `.git`
-  - Except `.DS_Store`
-
-### Bootstrap SASS template
+### Bootstrap SASS template from "create-react-app"
 - $`create-react-app bootstrap-temp`
 - Created `_admin` folder
 - Created `notes.md` (this)

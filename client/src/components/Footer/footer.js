@@ -12,7 +12,6 @@ class Footer extends React.Component {
 
   componentDidMount(){
     this.setState({ date: new Date().getFullYear() })
-    this.setFooterPosition()
   }
 
   componentDidUpdate(){
@@ -28,16 +27,11 @@ class Footer extends React.Component {
     } else {
       stickyFooter.style.position = "relative"
     }
-    if ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1)) {
-      stickyFooter.style.position = "relative"
-    }
-
   }
 
   render(){
     return (
-      <div  id="sticky-footer" className="footer"
-        style={this.state.style}>
+      <div  id="sticky-footer" className="footer">
 
           <div className="button-bar bg-secondary">
             <Container>
