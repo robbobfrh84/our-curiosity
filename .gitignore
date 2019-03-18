@@ -17,6 +17,7 @@
 .DS_Store
 *.DS_Store
 package-lock.json
+./package-lock.json
 *package-lock.json
 .env.local
 .env.development.local
