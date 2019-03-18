@@ -1,13 +1,13 @@
 ### Steps
 - [x] - create and add code to repo.
 - [x] - add node express and serve "/"
-- [x] - add simple mongoose view counter and serve(log) on window. 
+- [x] - add simple mongoose view counter and serve(log) on window.
 - [ ] - add to heroku to test live
 
 ### To Do
 - Create favicon
 - change title "React App" to  "Out Curiosity"
-- change breakdown for Navbar.collapse?
+- change breakdown pix width for Navbar.collapse?
 
 ### Sprint Goals
 - Full Stack (Single User) launch to heroku
