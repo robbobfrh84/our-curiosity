@@ -1,6 +1,7 @@
 ### Steps
-- [ ] - create and add code to repo.
-- [ ] - add node express and serve "/"
+- [x] - create and add code to repo.
+- [x] - add node express and serve "/"
+- [x] - add simple mongoose view counter and serve(log) on window. 
 - [ ] - add to heroku to test live
 
 ### To Do
