@@ -1,0 +1,22 @@
+{
+  "website_title": "Our Curiosity",
+  "website_subtitle": "Expoloring the Unknown",
+  "pages": {
+    "Home": {
+      "title": "Home Page",
+      "id": "h"
+    },
+    "FullPage": {
+      "title": "Full Page",
+      "id": "f1"
+    },
+    "Page2": {
+      "title": "Page 2",
+      "id": "p2"
+    },
+    "Theme": {
+      "title": "Theme",
+      "id": "p3"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+// $primary-color: #FD8945
+// $secondary-color: #F85649
+// $terinary-color: #59535F
+// $highlight-color: #BE3930
+// $background-color: #985356
+// $light-color: #ccc
+// $dark-color: #444
+//
+// $font: sans-serif
+// $font-weight: lighter
+
+$colors: (
+  primary: #FD8945,
+  secondary: #59535F,
+  success: #F85649,
+  info: #BE3930,
+  warning: #985356,
+  danger: crimson,
+  light: rgba(0,0,0,0.1),
+  dark: rgba(0,0,0,0.75),
+  link: mediumpurple,
+);
+
+$theme-colors: (
+  primary: map-get($colors, primary),
+  secondary: map-get($colors, secondary),
+  success: map-get($colors, success),
+  info: map-get($colors, info),
+  warning: map-get($colors, warning),
+  danger: map-get($colors, danger),
+  light: map-get($colors, light),
+  dark: map-get($colors, dark),
+  link: map-get($colors, link)
+) !default;
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+$primary: map-get($colors, primary);
+$secondary: map-get($colors, secondary);
+$success: map-get($colors, success);
+$info: map-get($colors, info);
+$warning: map-get($colors, warning);
+$danger: map-get($colors, danger);
+$light: map-get($colors, light);
+$dark: map-get($colors, dark);
+$link: map-get($colors, link);
