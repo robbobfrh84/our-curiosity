@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 */node_modules
+
 /.pnp
 .pnp.js
 
@@ -16,8 +17,8 @@
 .DS_Store
 *.DS_Store
 package-lock.json
+./package-lock.json
 *package-lock.json
-
 .env.local
 .env.development.local
 .env.test.local
