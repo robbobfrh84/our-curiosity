@@ -11,7 +11,15 @@
 
 ### Sprint Goals
 - Full Stack (Single User) launch to heroku
-Steps:
+- working design. 
+- Clarify re-deploy.
+- View manifest,
+- View Community Manifest
+  - Total images viewed,
+  - Total images saved,
+- search images,
+- view images,
+- save images
 
 ### Sprint 2
 - #1 Login
