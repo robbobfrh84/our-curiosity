@@ -2,8 +2,12 @@ import axios from "axios"
 
 export default {
 
-  test: function() {
-    return axios.get("/api/test")
+  getPageViews: function() {
+    return axios.get("/api/pageviews")
+  },
+  
+  incrementPage: function(page) {
+    return axios.put("/api/pageviews", {page: page})
   }
 
 }

@@ -3,25 +3,29 @@ import Footer from "../../components/Footer/footer.js"
 import Rover from '../../images/rover.svg'
 import API from "../../utils/API";
 
-
 import "./home.sass"
 
 export default class Home extends Component {
 
   constructor(props){
     super(props)
+    this.page = "home"
     this.state = {
-      rootData: props.rootData
+      rootData: props.rootData,
+      pageViews: '?'
     }
   }
 
   componentDidMount() {
-    this.apiTest()
+    this.getPageViews()
   }
 
-  apiTest = () => {
-    API.test()
-      .then(res => console.log(res))
+  getPageViews = () => {
+    API.incrementPage(this.page)
+      .then(res => {
+        console.log(res)
+        this.setState({pageViews: res.data.views})
+      })
       .catch(err => console.log(err))
   }
 
@@ -43,6 +47,8 @@ export default class Home extends Component {
         <h3 className="text-warning">
           &bull; {this.state.rootData.website_subtitle} &bull;
         </h3>
+        <br />
+        <h1 className="text-primary">&bull; ({this.state.pageViews}) &bull;</h1>
         <br /><br />
 
         <Footer />
