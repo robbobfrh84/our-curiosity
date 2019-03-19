@@ -5,34 +5,35 @@ mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/ourcurousity",
   { useNewUrlParser: true }
 )
 
-const seedPages = [
-    {
-      page: "home",
-      views: 0,
-      date: new Date(Date.now())
-    },
-    {
-      page: "imagelog",
-      views: 0,
-      date: new Date(Date.now())
-    },
-    {
-      page: "observations",
-      views: 0,
-      date: new Date(Date.now())
-    },
-    {
-      page: "signin",
-      views: 0,
-      date: new Date(Date.now())
-    }
-]
+const seed = process.argv[2]
 
-db.PageViews
-  .remove({})
-  .then(() => db.PageViews.collection.insertMany(seedPages))
-  .then(data => {
-    console.log(data.result.n + " records inserted!")
-    process.exit(0)
-  })
-  .catch(err => { console.error(err); process.exit(1); })
+console.log('🌰...Seeding...🥜...🌱', seed)
+
+if (seed === "admin") {
+
+  db.Admin
+    .remove({})
+    .then(() => db.Admin.insertMany([{}]) )
+    .then(data => logSeed(data) )
+    .catch(err => { console.error(err); process.exit(1); } )
+
+} else if (seed === "stockImages") {
+
+  console.log('seed stock images here...')
+
+} else {
+
+  console.log('\n🤔please enter a seed argument... i.e. `npm run seed stockImages`\n')
+
+}
+
+function logSeed(data){
+  console.log("\nRecord inserted!\n" + JSON.stringify(data, null, 2))
+  process.exit(0)
+}
+
+/* * * 👍 NOTES and OPTIONS 👍 * * *
+
+-  .then(() => db.PageViews.insertMany(someArrayOfObjects)
+
+* * * */

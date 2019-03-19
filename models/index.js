@@ -1,3 +1,3 @@
 module.exports = {
-  PageViews: require('./pageViews')
+  Admin: require('./M_admin')
 }

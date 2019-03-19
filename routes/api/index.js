@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const pageViewsRoutes = require("./pageViews");
+const adminRoutes = require("./admin.js");
 
-router.use("/pageviews", pageViewsRoutes);
+router.use("/admin", adminRoutes);
 
 module.exports = router;
