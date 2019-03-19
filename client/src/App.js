@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from "react-router-dom"
+import API from "./utils/API";
+
 import RootData from "./rootData.json"
 import NavBar from "./components/NavBar/navBar.js"
 import Home from "./components_pages/Home/home.js"
 import Page2 from "./components_pages/Page2/page2.js"
 import Theme from "./components_pages/Theme/theme.js"
 import FullPage from "./components_pages/FullPage/fullPage.js"
+
 import './styles/App.sass'
 import './styles/main.sass'
 
@@ -14,8 +17,22 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      rootData: RootData
+      rootData: RootData,
     }
+  }
+
+  componentDidMount() {
+    this.putGetAdmin()
+  }
+
+  putGetAdmin = () => {
+    API.putGetAdmin()
+      .then(res => {
+        const obj = {...this.state.rootData}
+        obj.visits = res.data.visits
+        this.setState({rootData: obj})
+      })
+      .catch(err => console.log(err))
   }
 
   render() {
@@ -30,6 +47,7 @@ class App extends Component {
             />
             <Route path="/"
               render={() => <NavPages rootData={this.state.rootData}/>}
+              rootData2={this.state.rootData}
             />
           </Switch>
         </BrowserRouter>
@@ -41,6 +59,7 @@ class App extends Component {
 }
 
 function NavPages (props) {
+
   return (
     <div>
       <NavBar title={props.rootData.website_title}/>
