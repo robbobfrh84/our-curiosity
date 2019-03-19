@@ -1,6 +1,6 @@
 const express = require("express")
 const mongoose = require("mongoose")
-// const routes = require("./routes")
+const routes = require("./routes")
 const app = express()
 
 const PORT = process.env.PORT || 3001
@@ -14,10 +14,9 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.use("/api/test", function(req, res){
-  console.log('ok /api/test')
-  res.json({ api: "/api/test" })
-})
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/ourcurousity");
+
+app.use(routes)
 
 app.listen(PORT, function() {
   console.log(`🏡  API Server on PORT: ${PORT} 🔥`)
