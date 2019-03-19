@@ -1,4 +1,4 @@
-### Refactor admin
+### 3-Refactor admin
 - [x] - Figure out default
 - [x] - create schema admin
   - visits, images_saved, images_viewed, manifest: {+Date = 0 (for updated track)}
@@ -6,8 +6,8 @@
 - [x] - re-impliment on APPS component. created this.pageviewsaved = false > true.
   - It actually wasn't required. Apps only reloads when entire pages reloads.
 
-### Add backend NASA Curiosuty API...  
-- [ ] - Add actual axios request
+### 4-Add backend NASA Curiosuty API...  
+- [x] - Add actual axios request
   - Start by if statement if updated <= 1000*60*60*24
   - then call API.
 - [ ] - `api/admin` + `/visits`
@@ -15,6 +15,8 @@
 - [ ] - impliment UGLY F.E.
   - Manifest
   - Community Activity
+
+? heroku?
 
 ### Stock Images
 - See notes.

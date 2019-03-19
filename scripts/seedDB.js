@@ -20,11 +20,11 @@ if (seed === "admin") {
 } else if (seed === "stockImages") {
 
   console.log('seed stock images here...')
-
+  process.exit(0)
 } else {
 
   console.log('\n🤔please enter a seed argument... i.e. `npm run seed stockImages`\n')
-
+  process.exit(0)
 }
 
 function logSeed(data){
