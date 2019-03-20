@@ -3,7 +3,7 @@
 - [x] - 1-add-basic-html-api
 - [x] - 2-add-mongo-counter
 - [x] - 3-admin-schema
-- [/] - 4-add-nasa-api
+- [x] - 4-add-nasa-api
   - Wipe rootData it's just confusing.
 - [ ] - 6-set-imagelog-schema (ugly FE)
 
