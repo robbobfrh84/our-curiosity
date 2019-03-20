@@ -44,20 +44,20 @@ class Footer extends React.Component {
                 </Col>
 
                 <Col md={3}>
-                  <Link to="/page2" >
-                    <Button variant="outline-primary"> Page 2 </Button>
+                  <Link to="/images" >
+                    <Button variant="outline-primary"> Images </Button>
                   </Link>
                 </Col>
 
                 <Col md={3}>
-                  <Link to="/theme" >
-                    <Button variant="outline-primary"> Theme </Button>
+                  <Link to="/observations" >
+                    <Button variant="outline-primary"> Observations </Button>
                   </Link>
                 </Col>
 
                 <Col md={3}>
-                  <Link to="/fullpage" className="full">
-                    <Button variant="outline-primary"> Full </Button>
+                  <Link to="/signin" className="full">
+                    <Button variant="outline-primary"> Sign In </Button>
                   </Link>
                 </Col>
 

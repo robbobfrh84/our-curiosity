@@ -27,15 +27,15 @@ export default function NavBar(props) {
             <Button variant="outline-primary noborder"> Home </Button>
           </Link>
           <div className="double-colon">: :</div>
-          <Link to="/page2" >
+          <Link to="/images" >
             <Button variant="outline-primary noborder"> Image Log </Button>
           </Link>
           <div className="double-colon">: :</div>
-          <Link to="/theme" >
+          <Link to="/observations" >
             <Button variant="outline-primary noborder"> Obervations </Button>
           </Link>
           <div className="double-colon">: :</div>
-          <Link to="/fullpage" className="full">
+          <Link to="/signin" className="full">
             <Button variant="outline-success bg-light"> Sign In </Button>
           </Link>
 

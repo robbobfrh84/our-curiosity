@@ -1,17 +1,26 @@
-### Steps
-- [x] - create and add code to repo.
-- [x] - add node express and serve "/"
-- [x] - add simple mongoose view counter and serve(log) on window.
-- [ ] - add to heroku to test live
+### Steps (branches)
+- [x] - 0-client-only
+- [x] - 1-add-basic-html-api
+- [x] - 2-add-mongo-counter
+- [x] - 3-admin-schema
+- [/] - 4-add-nasa-api
+  - Wipe rootData it's just confusing.
+- [ ] - 6-set-imagelog-schema (ugly FE)
+
+- [ ] - ? build image view page :ids
+- [ ] - ? style landing page with manifest
+- [ ] - ? style image
+- [ ] - ? add to heroku to test live
 
 ### To Do
 - Create favicon
 - change title "React App" to  "Out Curiosity"
 - change breakdown pix width for Navbar.collapse?
+- Add loaders
 
 ### Sprint Goals
 - Full Stack (Single User) launch to heroku
-- working design. 
+- working design.
 - Clarify re-deploy.
 - View manifest,
 - View Community Manifest

@@ -5,9 +5,9 @@ import API from "./utils/API";
 import RootData from "./rootData.json"
 import NavBar from "./components/NavBar/navBar.js"
 import Home from "./components_pages/Home/home.js"
-import Page2 from "./components_pages/Page2/page2.js"
-import Theme from "./components_pages/Theme/theme.js"
-import FullPage from "./components_pages/FullPage/fullPage.js"
+import Images from "./components_pages/Images/images.js"
+import Observations from "./components_pages/Observations/observations.js"
+import SignIn from "./components_pages/SignIn/signIn.js"
 
 import './styles/App.sass'
 import './styles/main.sass'
@@ -18,6 +18,8 @@ class App extends Component {
     super(props)
     this.state = {
       rootData: RootData,
+      manifest: {},
+      admin: {}
     }
   }
 
@@ -28,9 +30,16 @@ class App extends Component {
   putGetAdmin = () => {
     API.putGetAdmin()
       .then(res => {
-        const obj = {...this.state.rootData}
-        obj.visits = res.data.visits
-        this.setState({rootData: obj})
+        this.setState({
+          manifest: res.data.mission_manifest,
+          admin: {
+            visits: res.data.visits,
+            images_saved: res.data.images_saved,
+            images_viewed: res.data.images_viewed
+          }
+        })
+
+
       })
       .catch(err => console.log(err))
   }
@@ -40,43 +49,42 @@ class App extends Component {
       <div className="app">
         <BrowserRouter>
           <Switch>
-            <Route exact path="/fullpage"
-              render={route => <FullPage {...route}
-                rootData={this.state.rootData.pages.FullPage}
+            <Route exact path="/signin"
+              render={route => <SignIn {...route}
+                pageData={this.state.rootData.pages.signIn}
               />}
             />
             <Route path="/"
-              render={() => <NavPages rootData={this.state.rootData}/>}
-              rootData2={this.state.rootData}
+              render={() => <NavPages app={this.state}/>}
             />
           </Switch>
         </BrowserRouter>
       </div>
-
     )
   }
 
 }
 
-function NavPages (props) {
-
+function NavPages(props) {
   return (
     <div>
-      <NavBar title={props.rootData.website_title}/>
+      <NavBar title={props.app.rootData.website_title}/>
       <Switch>
         <Route path="/(|home|landing)/"
           render={route => <Home {...route}
-            rootData={props.rootData}
+            manifest={props.app.manifest}
+            pageData={props.app.rootData}
+            admin={props.app.admin}
           />}
         />
-        <Route exact path="/page2"
-          render={route => <Page2 {...route}
-            rootData={props.rootData.pages.Page2}
+        <Route exact path="/images"
+          render={route => <Images {...route}
+            pageData={props.app.rootData.pages.images}
           />}
         />
-        <Route exact path="/theme"
-          render={route => <Theme {...route}
-            rootData={props.rootData.pages.Theme}
+        <Route exact path="/observations"
+          render={route => <Observations {...route}
+            pageData={props.app.rootData.pages.observations}
           />}
         />
       </Switch>
