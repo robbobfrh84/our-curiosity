@@ -11,7 +11,8 @@
     "seed": "node scripts/seedDB.js $ARG",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build && npm run seed admin"
+    "heroku-postbuild": "npm run build",
+    "//": "NOTE: add '&& npm run seed admin' to heroku-postbuild to reseed admin data",
   },
   "repository": {
     "type": "git",
