@@ -1,7 +1,7 @@
 import React from "react"
 import Footer from "../../components/Footer/footer.js"
 import { ButtonToolbar, Button } from "react-bootstrap"
-import "./theme.sass"
+import "./observations.sass"
 
 export default function Home(props) {
 
@@ -10,7 +10,7 @@ export default function Home(props) {
 
         <br /><br />
         <h1 className="text-info">
-          {props.rootData.title}
+          {props.pageData.title}
         </h1>
         <br /><br />
 

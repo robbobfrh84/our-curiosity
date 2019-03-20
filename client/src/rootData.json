@@ -1,23 +1,18 @@
 {
   "website_title": "Our Curiosity",
-  "website_subtitle": "Expoloring the Unknown",
-  "visits": "?",
+  "website_subtitle": "is a communial expoloration and observation of the photographs and data sent to us by NASA's Curiosity Rover on Mars.",
   "pages": {
-    "Home": {
-      "title": "Home Page",
-      "id": "h"
+    "home": {
+      "title": "Home Page"
     },
-    "FullPage": {
-      "title": "Full Page",
-      "id": "f1"
+    "images": {
+      "title": "Curiosity Photography"
     },
-    "Page2": {
-      "title": "Page 2",
-      "id": "p2"
+    "observations": {
+      "title": "Community Observations"
     },
-    "Theme": {
-      "title": "Theme",
-      "id": "p3"
+    "signIn": {
+      "title": "Full Page"
     }
   }
 }

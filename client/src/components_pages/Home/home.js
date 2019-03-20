@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 import Footer from "../../components/Footer/footer.js"
-import Rover from '../../images/rover.svg'
+import Rover from "../../images/rover.svg"
 
 import "./home.sass"
 
@@ -9,14 +9,18 @@ export default class Home extends Component {
   constructor(props){
     super(props)
     this.state = {
-      rootData: props.rootData,
+      pageData: props.pageData,
+      manifest: props.manifest,
+      admin: props.admin
     }
   }
 
-  componentWillReceiveProps(x){
-    const obj = {...this.state.rootData}
-    obj.visits = x.rootData.visits
-    this.setState({rootData: obj})
+  componentWillReceiveProps({manifest, admin}){
+    this.setState({ manifest: manifest, admin: admin })
+  }
+
+  dressNum(n){
+    return n ? n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : n
   }
 
   handleImageLoaded() {
@@ -33,21 +37,75 @@ export default class Home extends Component {
           />
         </div>
 
-        <br /><br />
-        <h3 className="text-warning">
-          &bull; {this.state.rootData.website_subtitle} &bull;
-        </h3>
-        <br />
-        <h1 className="text-primary">
-          &bull; ({this.state.rootData.visits}) &bull;
+        <h1 className="text-warning">
+          &bull; Mission Manifest &bull;
         </h1>
-        <br /><br />
+
+        { Object.entries(this.state.manifest).length === 0 &&
+          <div>
+            <h1 className="text-secondary">?</h1> <br/ >
+          </div>
+        }
+
+        { Object.entries(this.state.manifest).length !== 0 &&
+          <div>
+            <h4 className="text-primary">
+              Launch Date: {this.state.manifest.launch_date}
+            </h4>
+            <h4 className="text-primary">
+              Landing Date: {this.state.manifest.landing_date}
+            </h4>
+            <h4 className="text-primary">
+              Last Updated: {this.state.manifest.max_date}
+            </h4>
+            <h4 className="text-primary">
+              Martian Days("sols"): {this.dressNum(this.state.manifest.max_sol)}
+            </h4>
+            <h4 className="text-primary">
+              Status: {this.state.manifest.status}
+            </h4>
+            <h4 className="text-primary">
+              Total Photos: {this.dressNum(this.state.manifest.total_photos)}
+            </h4>
+            <br />
+          </div>
+        }
+
+        <h1 className="text-warning">
+          &bull; Community Activity &bull;
+        </h1>
+
+        { Object.entries(this.state.admin).length === 0 &&
+          <div>
+            <h1 className="text-secondary">?</h1> <br/ >
+          </div>
+        }
+
+        { Object.entries(this.state.admin).length !== 0 &&
+          <div>
+            <h4 className="text-primary">
+              Visits({this.state.admin.visits})
+            </h4>
+            <h4 className="text-primary">
+              Saved Images({this.state.admin.images_saved})
+            </h4>
+            <h4 className="text-primary">
+              Images Viewed({this.state.admin.images_viewed})
+            </h4>
+            <br /><br />
+            <hr />
+            <h5 style={{width:300, margin: "auto"}} className="text-secondary">
+              <strong> {this.state.pageData.website_title} </strong>
+              {this.state.pageData.website_subtitle}
+            </h5>
+            <br /><br />
+          </div>
+        }
 
         <Footer />
 
       </div>
     )
   }
-
 
 }

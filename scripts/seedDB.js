@@ -7,12 +7,12 @@ mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/ourcurousity",
 
 const seed = process.argv[2]
 
-console.log('🌰...Seeding...🥜...🌱', seed)
+console.log(seed, '🌰...Seeding...💦...💦...🌱')
 
 if (seed === "admin") {
 
   db.Admin
-    .remove({})
+    .deleteOne({})
     .then(() => db.Admin.insertMany([{}]) )
     .then(data => logSeed(data) )
     .catch(err => { console.error(err); process.exit(1); } )
@@ -28,7 +28,7 @@ if (seed === "admin") {
 }
 
 function logSeed(data){
-  console.log("\nRecord inserted!\n" + JSON.stringify(data, null, 2))
+  console.log("\nDocument(s) inserted!\n" + JSON.stringify(data, null, 2))
   process.exit(0)
 }
 
