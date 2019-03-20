@@ -1,10 +1,12 @@
+### next branch
+- 
+
 ### Steps (branches)
 - [x] - 0-client-only
 - [x] - 1-add-basic-html-api
 - [x] - 2-add-mongo-counter
 - [x] - 3-admin-schema
 - [x] - 4-add-nasa-api
-  - Wipe rootData it's just confusing.
 - [ ] - 6-set-imagelog-schema (ugly FE)
 
 - [ ] - ? build image view page :ids
