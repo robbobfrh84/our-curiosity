@@ -12,7 +12,7 @@
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
-    "//": "NOTE: add '&& npm run seed admin' to heroku-postbuild to reseed admin data",
+    "//": "NOTE: Make sure to && npm run seed admin to heroku-postbuild to set/reset seed data"
   },
   "repository": {
     "type": "git",
