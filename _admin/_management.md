@@ -8,8 +8,7 @@ What are you doing this step? I'm going to firt add the ...
 - [x] - 1-add-basic-html-api
 - [x] - 2-add-mongo-counter
 - [x] - 3-admin-schema
-- [/] - 4-add-nasa-api
-  - Wipe rootData it's just confusing.
+- [x] - 4-add-nasa-api
 - [ ] - 6-set-imagelog-schema (ugly FE)
 
 - [ ] - ? build image view page :ids
