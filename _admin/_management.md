@@ -1,8 +1,3 @@
-### next branch
-What are you doing this step? I'm going to firt add the ...
-
-- [ ] -
-
 ### Steps (branches)
 - [x] - 0-client-only
 - [x] - 1-add-basic-html-api

@@ -24,9 +24,3 @@ const adminSchema = new Schema({
 const Admin = mongoose.model("Admin", adminSchema)
 
 module.exports = Admin
-
-/* * * 👍 NOTES and OPTIONS 👍 * * *
-
-- page: { type: String, required: true, unique: true },
-
-* * * */

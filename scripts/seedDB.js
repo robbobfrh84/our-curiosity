@@ -17,10 +17,33 @@ if (seed === "admin") {
     .then(data => logSeed(data) )
     .catch(err => { console.error(err); process.exit(1); } )
 
-} else if (seed === "stockImages") {
+} else if (seed === "pages") {
+
+  const pages = [
+    {
+      sol: 1000,
+      page: 1,
+      images: [{img:1},{img:2}]
+    },
+    {
+      sol: 1000,
+      page: 2,
+      images: [{img:3},{img:4}]
+    },
+    {
+      sol: 1000,
+      page: 3,
+      images: [{img:5},{img:6}]
+    }
+  ]
+
+  db.Page
+    .deleteOne({})
+    .then(() => db.Page.insertMany(pages) )
+    .then(data => logSeed(data) )
+    .catch(err => { console.error(err); process.exit(1); } )
 
   console.log('seed stock images here...')
-  process.exit(0)
 } else {
 
   console.log('\n🤔please enter a seed argument... i.e. `npm run seed stockImages`\n')
