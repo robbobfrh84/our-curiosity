@@ -4,7 +4,8 @@
 - [x] - 2-add-mongo-counter
 - [x] - 3-admin-schema
 - [x] - 4-add-nasa-api
-- [ ] - 6-set-imagelog-schema (ugly FE)
+- [ ] - 6-image-pages-back-end (ugly FE) - `api/page/:sol/:page`
+- [ ] - 7-view-image-page - `api/image/:id`
 
 - [ ] - ? build image view page :ids
 - [ ] - ? style landing page with manifest
