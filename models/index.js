@@ -1,6 +1,6 @@
 module.exports = {
-  Admin: require('./M_admin'),
-  Page: require('./M_page')
+  Admin: require('./adminModel'),
+  Page: require('./pageModel')
 }
 
 /* * * 👍 NOTES and OPTIONS 👍 * * *

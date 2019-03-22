@@ -1,6 +1,6 @@
 const router = require("express").Router()
-const adminRoutes = require("./admin.js")
-const pageRoutes = require("./page.js")
+const adminRoutes = require("./adminAPI.js")
+const pageRoutes = require("./pageAPI.js")
 
 router.use("/admin", adminRoutes)
 router.use("/page", pageRoutes)

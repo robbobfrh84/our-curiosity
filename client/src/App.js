@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import API from "./utils/API";
+import API from "./utils/API"
 
 import RootData from "./rootData.json"
 import NavBar from "./components/NavBar/navBar.js"

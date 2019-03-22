@@ -1,6 +1,6 @@
 const db = require("../models")
 const mongoose = require("mongoose")
-const nasaCuriosityAPI = require("../toolkit/nasaCuriosityAPI")
+const NasaCuriosityAPI = require("../toolkit/nasaCuriosityAPI")
 const delay = 3600000 // 24h = 86400000, 1hr = 3600000, 1min = 60000
 
 const AdminControllers = {
@@ -42,7 +42,7 @@ async function checkForManifestUpdate(){
         const lastUpdate = data.mission_manifest.updated
         const now = Date.now()
         if (Date.now() > lastUpdate+delay) {// ☝️ ? Check for delay update
-          nasaCuriosityAPI.manifest()
+          NasaCuriosityAPI.manifest()
             .then(payload => {
               const new_mission_manifest = {
                   updated : now,
