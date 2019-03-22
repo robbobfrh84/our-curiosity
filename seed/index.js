@@ -2,6 +2,8 @@ const mongoose = require("mongoose")
 const db = require("../models")
 const Admin = require("./adminSeed")
 const Page = require("./pageSeed")
+const User = require("./userSeed")
+
 const seed = process.argv[2]
 
 mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/ourcurousity", { useNewUrlParser: true })
@@ -10,6 +12,8 @@ console.log(seed, '🌰...Seeding...💦...💦...🌱')
 switch (seed) {
   case "admin": Admin.resetAdminDb(logSeed); break;
   case "pages": Page.seed3blanks(logSeed); break;
+  case "user": User.seedUsers(logSeed); break;
+
   default: {
     console.log('\n🤔please enter a seed argument... i.e. `npm run seed stockImages`\n')
     process.exit(0)
