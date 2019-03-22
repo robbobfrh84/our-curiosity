@@ -39,6 +39,7 @@
   - For directions and more info of the UI related buttons/actions etc...
   - Image Log, Oberservations, overall info follows the same component.
 - Able to edit notes.
+- Add camera's info to manifest. 
 
 ### Water
 - Twitter Bot.
