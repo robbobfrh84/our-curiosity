@@ -3,14 +3,17 @@ import Footer from "../../components/Footer/footer.js"
 import API from "../../utils/API"
 import { InputGroup, FormControl, Container, Button, Row, Col, Card } from 'react-bootstrap'
 import "./images.sass"
+import ViewImage from "../../components/ViewImage/viewImage.js"
 
 export default class Images extends Component {
 
   state = {
+    site_state: this.props.site_state,
     pageData: this.props.pageData,
     sol: "1000",
     page: "1",
-    images: []
+    images: [],
+    viewImage: {}
   }
 
   findPage = () => {
@@ -24,6 +27,12 @@ export default class Images extends Component {
 
   handleInputChange = (event) => {
     this.setState({[event.target.name]: event.target.value})
+  }
+
+  viewImage = (image) => {
+    image.show = true
+    image.user = this.state.site_state.user
+    this.setState({viewImage: image})
   }
 
   render() {
@@ -81,7 +90,6 @@ export default class Images extends Component {
 
         <div className="card-container">
           {this.state.images.length > 0 &&
-
             this.state.images.map( (img, i) => (
               <Card className="card bg-secondary" key={img.id}>
               <Card.Img variant="top" src={img.img_src} />
@@ -90,13 +98,14 @@ export default class Images extends Component {
                  <Card.Text>
                    ...text {img.id}
                  </Card.Text>
-                 <Button variant="primary">Go somewhere</Button>
+                 <Button variant="primary" onClick={()=>this.viewImage(img)}>View Image</Button>
                 </Card.Body>
               </Card>
             ))
           }
         </div>
 
+        <ViewImage viewImage={this.state.viewImage} />
         <br /><br />
         <Footer />
       </div>
