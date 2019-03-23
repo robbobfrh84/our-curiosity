@@ -3,6 +3,7 @@ const db = require("../models")
 const Admin = require("./adminSeed")
 const Page = require("./pageSeed")
 const User = require("./userSeed")
+const Saved = require("./savedSeed")
 
 const seed = process.argv[2]
 
@@ -13,6 +14,7 @@ switch (seed) {
   case "admin": Admin.resetAdminDb(logSeed); break;
   case "pages": Page.seed3blanks(logSeed); break;
   case "user": User.seedUsers(logSeed); break;
+  case "saved": Saved.saveImages(logSeed); break;
   case "all":
     Admin.resetAdminDb(logSeed, true)
     Page.seed3blanks(logSeed, true)
