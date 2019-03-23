@@ -5,6 +5,9 @@ Heroku Link: https://our-curiosity.herokuapp.com/
 
 # Steps to Development 
 
+Download Robo 3T for localhost mongoDB viewing/editing
+- https://robomongo.org/download
+
 First time getting started
 - $`git clone <this-repo>` & $`cd` into project folder
 - $`npm install`
