@@ -1,7 +1,6 @@
 const db = require("../models")
 const NasaCuriosityAPI = require("../toolkit/nasaCuriosityAPI")
 
-
 const Page = {
 
   seed3blanks: (seedLogger, exit)=>{
