@@ -26,15 +26,21 @@ export default function NavBar(props) {
           <Link to="/home">
             <Button variant="outline-primary noborder"> Home </Button>
           </Link>
-          <div className="double-colon">: :</div>
+          <div className="spacer">
+            <hr></hr>
+          </div>
           <Link to="/images" >
             <Button variant="outline-primary noborder"> Image Log </Button>
           </Link>
-          <div className="double-colon">: :</div>
+          <div className="spacer">
+            <hr></hr>
+          </div>
           <Link to="/observations" >
             <Button variant="outline-primary noborder"> Obervations </Button>
           </Link>
-          <div className="double-colon">: :</div>
+          <div className="spacer">
+            <hr></hr>
+          </div>
           <Link to="/signin" className="full">
             <Button variant="outline-success bg-light"> Sign In </Button>
           </Link>
