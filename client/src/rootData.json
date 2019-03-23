@@ -1,6 +1,10 @@
 {
   "website_title": "Our Curiosity",
   "website_subtitle": "is a communial expoloration and observation of the photographs and data sent to us by NASA's Curiosity Rover on Mars.",
+  "site_state" : {
+    "user": false,
+    "user_id": false
+  },
   "pages": {
     "home": {
       "title": "Home Page"
@@ -12,7 +16,7 @@
       "title": "Community Observations"
     },
     "signIn": {
-      "title": "Full Page"
+      "title": "Sign In"
     }
   }
 }

@@ -4,7 +4,7 @@ const NasaCuriosityAPI = require("../toolkit/nasaCuriosityAPI")
 
 const Page = {
 
-  seed3blanks: (seedLogger)=>{
+  seed3blanks: (seedLogger, exit)=>{
     var stockPages = [
       {sol: 1000, page: 1},
       {sol: 1000, page: 2},
@@ -37,7 +37,7 @@ const Page = {
       db.Page
         .deleteMany({})
         .then(() => db.Page.insertMany(allData) )
-        .then(data => seedLogger(data) )
+        .then(data => seedLogger(data, exit) )
         .catch(err => { console.error(err); process.exit(1); } )
     })
   }

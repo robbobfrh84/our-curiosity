@@ -38,10 +38,15 @@ class App extends Component {
             images_viewed: res.data.images_viewed
           }
         })
-
-
       })
       .catch(err => console.log(err))
+  }
+
+  updateUser = (user) => {
+    const rootData = {...this.state.rootData}
+    rootData.site_state.user = user.userName
+    rootData.site_state.user_id = user._id
+    this.setState({rootData: rootData})
   }
 
   render() {
@@ -52,6 +57,8 @@ class App extends Component {
             <Route exact path="/signin"
               render={route => <SignIn {...route}
                 pageData={this.state.rootData.pages.signIn}
+                site_state={this.state.rootData.site_state}
+                updateUser={this.updateUser}
               />}
             />
             <Route path="/"
@@ -68,7 +75,10 @@ class App extends Component {
 function NavPages(props) {
   return (
     <div>
-      <NavBar title={props.app.rootData.website_title}/>
+      <NavBar
+        title={props.app.rootData.website_title}
+        site_state={props.app.rootData.site_state}
+      />
       <Switch>
         <Route path="/(|home|landing)/"
           render={route => <Home {...route}
