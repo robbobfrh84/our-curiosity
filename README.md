@@ -25,12 +25,11 @@ After updating and testing on the master branch run...
 
 # Resources
 
-Passport JS: http://www.passportjs.org
--
+Passport JS: 
+- http://www.passportjs.org
 
 Favicon Generator:
 - https://realfavicongenerator.net/favicon_result?file_id=p1d6lj02mpfts1l8i1voptk91iaa6#.XJZg1-tKjOR
-
 
 MERN Google Cloud Services
 - https://cloud.google.com/blog/products/databases/build-it-like-you-mean-it-with-mongodb-atlas-on-gcp
