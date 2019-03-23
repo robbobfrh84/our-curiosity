@@ -2,25 +2,25 @@ const db = require("../models")
 
 const User = {
 
-  seedUsers: (seedLogger)=>{
+  seedUsers: (seedLogger, exit)=>{
 
     const users = [
       {
         userName: "Bob",
         email: "bobmain49@gmail.com",
-        password: "12345",
+        password: "1234",
       },
       {
         userName: "Jordan",
         email: "jordanCoder404@gmail.com",
-        password: "12345",
+        password: "1234",
       }
     ]
 
     db.User
-      .deleteOne({})
+      .deleteMany({})
       .then(() => db.User.insertMany(users) )
-      .then(data => seedLogger(data) )
+      .then(data => seedLogger(data, exit) )
       .catch(err => { console.error(err); process.exit(1); } )
   }
 

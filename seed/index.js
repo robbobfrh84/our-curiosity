@@ -13,16 +13,20 @@ switch (seed) {
   case "admin": Admin.resetAdminDb(logSeed); break;
   case "pages": Page.seed3blanks(logSeed); break;
   case "user": User.seedUsers(logSeed); break;
-
+  case "all":
+    Admin.resetAdminDb(logSeed, true)
+    Page.seed3blanks(logSeed, true)
+    User.seedUsers(logSeed, true)
+    break
   default: {
     console.log('\n🤔please enter a seed argument... i.e. `npm run seed stockImages`\n')
     process.exit(0)
   }
 }
 
-function logSeed(data){
+function logSeed(data, exit){
   console.log("\nDocument(s) inserted!\n" + JSON.stringify(data, null, 2))
-  process.exit(0)
+  if (!exit) process.exit(0)
 }
 
 /* * * 👍 NOTES and OPTIONS 👍 * * *

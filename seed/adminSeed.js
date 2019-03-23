@@ -2,11 +2,11 @@ const db = require("../models")
 
 const Admin = {
 
-  resetAdminDb: (seedLogger)=>{
+  resetAdminDb: (seedLogger, exit)=>{
     db.Admin
-      .deleteOne({})
+      .deleteMany({})
       .then(() => db.Admin.insertMany([{}]) )
-      .then(data => seedLogger(data) )
+      .then(data => seedLogger(data, exit) )
       .catch(err => { console.error(err); process.exit(1); } )
   }
 

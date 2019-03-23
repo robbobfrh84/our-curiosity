@@ -49,8 +49,6 @@ export default class Images extends Component {
                 </InputGroup.Prepend>
                 <FormControl
                   className="bg-light"
-                  aria-label="Large"
-                  aria-describedby="inputGroup-sizing-sm"
                   name="sol"
                   onChange={this.handleInputChange}
                   value={this.state.sol}
@@ -66,8 +64,6 @@ export default class Images extends Component {
                 </InputGroup.Prepend>
                 <FormControl
                   className="bg-light"
-                  aria-label="Large"
-                  aria-describedby="inputGroup-sizing-sm"
                   name="page"
                   onChange={this.handleInputChange}
                   value={this.state.page}
