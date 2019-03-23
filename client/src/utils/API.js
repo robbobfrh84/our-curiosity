@@ -21,6 +21,11 @@ export default {
   },
   signIn: function(user){
     return axios.post("/api/user/signin", user)
+  },
+
+  // 🏞 saved
+  saveImage: function(image, user){
+    return axios.post("/api/saved", {image:image})
   }
 
 }

@@ -19,20 +19,25 @@ export default class Images extends Component {
   findPage = () => {
     API.findPage( this.state.sol, this.state.page)
       .then(res => {
-        console.log('images page payload', res.data.images)
         this.setState({images: res.data.images})
       })
       .catch(err => console.log(err))
   }
 
   handleInputChange = (event) => {
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({
+      [event.target.name]: event.target.value,
+      viewImage: {}
+    })
   }
 
   viewImage = (image) => {
-    image.show = true
-    image.user = this.state.site_state.user
-    this.setState({viewImage: image})
+    const imageData = {
+      image: image,
+      user: this.state.site_state.user,
+      show: true
+    }
+    this.setState({viewImage: imageData})
   }
 
   render() {

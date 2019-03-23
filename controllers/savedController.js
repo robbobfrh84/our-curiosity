@@ -11,9 +11,10 @@ const SavedControllers = {
   },
 
   save: function(req, res) {
-    console.log('Save Image')
+    console.log('Save Image', req.body)
     db.Saved.create(req.body)
       .then(savedDB => {
+        console.log(savedDB)
         db.Admin.findOneAndUpdate( {name: "admin"}, { $inc : {images_saved : 1} } )
           .then(dbModel => { res.json(savedDB) })
           .catch(err => res.status(422).json(err) )
