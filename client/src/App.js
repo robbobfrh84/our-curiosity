@@ -90,6 +90,7 @@ function NavPages(props) {
         <Route exact path="/images"
           render={route => <Images {...route}
             pageData={props.app.rootData.pages.images}
+            site_state={props.app.rootData.site_state}
           />}
         />
         <Route exact path="/observations"
