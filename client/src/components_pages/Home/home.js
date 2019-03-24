@@ -94,8 +94,9 @@ export default class Home extends Component {
             </h4>
             <br /><br />
             <hr />
-            <h5 style={{width:300, margin: "auto"}} className="text-secondary">
+            <h5 style={{width:590, margin:"auto"}} className="text-secondary">
               <strong> {this.state.pageData.website_title} </strong>
+              <br></br>
               {this.state.pageData.website_subtitle}
             </h5>
             <br /><br />
