@@ -7,6 +7,8 @@ import NavBar from "./components/NavBar/navBar.js"
 import Home from "./components_pages/Home/home.js"
 import Images from "./components_pages/Images/images.js"
 import Observations from "./components_pages/Observations/observations.js"
+import Admin from "./components_pages/Admin/admin.js"
+
 import SignIn from "./components_pages/SignIn/signIn.js"
 
 import './styles/App.sass'
@@ -25,9 +27,11 @@ class App extends Component {
 
   componentDidMount() {
     const obj = {...this.state.rootData}
-    obj.site_state.user = sessionStorage.ourCuriosityUser || false
-    obj.site_state.user_id = sessionStorage.ourCuriosityId || false
-    this.setState({rootData: obj})
+    if (sessionStorage.ocUser && sessionStorage.ocUser !== "false") {
+      obj.site_state.user = sessionStorage.ocUser
+      obj.site_state.user_id = sessionStorage.ocId
+      this.setState({rootData: obj})
+    }
     this.putGetAdmin()
   }
 
@@ -50,8 +54,8 @@ class App extends Component {
     const rootData = {...this.state.rootData}
     rootData.site_state.user = user.userName
     rootData.site_state.user_id = user._id
-    sessionStorage.ourCuriosityUser = user.userName
-    sessionStorage.ourCuriosityId = user._id
+    sessionStorage.ocUser = user.userName
+    sessionStorage.ocId = user._id
     this.setState({rootData: rootData})
   }
 
@@ -59,8 +63,8 @@ class App extends Component {
     const rootData = {...this.state.rootData}
     rootData.site_state.user = false
     rootData.site_state.user_id = false
-    sessionStorage.ourCuriosityUser = false
-    sessionStorage.ourCuriosityId = false
+    sessionStorage.ocUser = "false"
+    sessionStorage.ocId = "false"
     this.setState({rootData: rootData})
   }
 
@@ -89,7 +93,6 @@ class App extends Component {
 
 function NavPages(props, logout) {
 
-  console.log(props.logout)
   return (
     <div>
       <NavBar
@@ -114,7 +117,10 @@ function NavPages(props, logout) {
         <Route exact path="/observations"
           render={route => <Observations {...route}
             pageData={props.app.rootData.pages.observations}
+            for="community"
           />}
+        />
+        <Route exact path="/admin" render={Admin} />}
         />
       </Switch>
     </div>

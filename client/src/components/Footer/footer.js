@@ -14,8 +14,13 @@ class Footer extends React.Component {
     this.setState({ date: new Date().getFullYear() })
   }
 
-  componentDidUpdate(){
-    this.setFooterPosition()
+  componentDidUpdate(props){
+    if (props.force) {
+      const stickyFooter = document.getElementById("sticky-footer")
+      stickyFooter.style.position = "relative"
+    } else {
+      this.setFooterPosition()
+    }
   }
 
   setFooterPosition(){ // Do some CRAZY stuff to keep footer in place for dynamic data-driven updates.

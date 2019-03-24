@@ -1,46 +1,66 @@
-import React from "react"
+import React, { Component } from "react"
 import Footer from "../../components/Footer/footer.js"
-import { ButtonToolbar, Button } from "react-bootstrap"
+import { Card } from "react-bootstrap"
+import API from "../../utils/API"
 import "./observations.sass"
 
-export default function Home(props) {
+export default class Obervations extends Component {
 
-  return (
-      <div className="theme">
+  constructor(props){
+    super()
+    this.state = {
+      pageData: props.pageData,
+      forWho: props.for,
+      images: []
+    }
+  }
+
+  componentDidMount(){
+    console.log(this.state)
+    this.getAllSavedImages()
+  }
+
+  getAllSavedImages = () => {
+    API.getAllSavedImages()
+      .then(res => {
+        this.setState({images: res.data || []})
+      })
+      .catch(err => console.log(err))
+  }
+
+  render() {
+    return (
+      <div className="observations">
 
         <br /><br />
         <h1 className="text-info">
-          {props.pageData.title}
+          {this.state.pageData.title}
         </h1>
         <br /><br />
 
-        <ButtonToolbar className="justify-content-center">
-          <Button variant="primary">Primary</Button> &nbsp;&nbsp;
-          <Button variant="secondary">Secondary</Button> &nbsp;&nbsp;
-          <Button variant="success">Success</Button> &nbsp;&nbsp;
-          <Button variant="warning">Warning</Button> &nbsp;&nbsp;
-          <Button variant="danger">Danger</Button> &nbsp;&nbsp;
-          <Button variant="info">Info</Button> &nbsp;&nbsp;
-          <Button variant="light">Light</Button> &nbsp;&nbsp;
-          <Button variant="dark">Dark</Button> &nbsp;&nbsp;
-          <Button variant="link">Link</Button> &nbsp;&nbsp;
-        </ButtonToolbar>
+        <div className="card-container">
+        {this.state.images.length > 0 &&
+          this.state.images.map( (img, i) => (
+            <Card className="card bg-secondary" key={i} >
+              <Card.Img variant="top" src={img.image.img_src} />
+              <Card.Body>
+               <Card.Title>ID#{img.image.id}</Card.Title>
+               <Card.Text>
+                 Saved ({img.totalSaved}) times
+               </Card.Text>
+              </Card.Body>
+            </Card>
+          ))
+        }
+        </div>
+
         <br /><br />
 
-        <ButtonToolbar className="justify-content-center">
-          <Button variant="outline-primary">Primary</Button> &nbsp;&nbsp;
-          <Button variant="outline-secondary">Secondary</Button> &nbsp;&nbsp;
-          <Button variant="outline-success">Success</Button> &nbsp;&nbsp;
-          <Button variant="outline-warning">Warning</Button> &nbsp;&nbsp;
-          <Button variant="outline-danger">Danger</Button> &nbsp;&nbsp;
-          <Button variant="outline-info">Info</Button> &nbsp;&nbsp;
-          <Button variant="outline-light">Light</Button> &nbsp;&nbsp;
-          <Button variant="outline-dark">Dark</Button> &nbsp;&nbsp;
-          <Button variant="outline-link">Link</Button> &nbsp;&nbsp;
-        </ButtonToolbar>
-
-        <Footer />
+        {!this.state.images.length > 0 && <Footer /> }
+        {this.state.images.length > 0 && <Footer force="true"/> }
 
       </div>
-  );
+    )
+  }
+
 }

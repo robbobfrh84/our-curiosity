@@ -19,6 +19,7 @@ switch (seed) {
     Admin.resetAdminDb(logSeed, true)
     Page.seed3blanks(logSeed, true)
     User.seedUsers(logSeed, true)
+    Saved.saveImages(logSeed, true)
     break
   default: {
     console.log('\n🤔please enter a seed argument... i.e. `npm run seed stockImages`\n')
