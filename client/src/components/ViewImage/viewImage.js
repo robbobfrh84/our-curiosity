@@ -8,10 +8,8 @@ export default class ViewImage extends Component {
 
   constructor(props, context) {
     super(props, context)
-
     this.handleShow = this.handleShow.bind(this)
     this.handleClose = this.handleClose.bind(this)
-
     this.state = {
       show: false,
       image: this.props.viewImage,
@@ -29,7 +27,6 @@ export default class ViewImage extends Component {
   handleClose() {
     const obj = {...this.state.image}
     obj.show = false
-    console.log(obj.show)
     this.setState({ show: false, image: obj })
   }
 

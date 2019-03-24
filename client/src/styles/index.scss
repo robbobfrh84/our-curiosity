@@ -8,6 +8,8 @@ $colors: (
   light: rgba(0,0,0,0.1),
   dark: rgba(0,0,0,0.75),
   link: mediumpurple,
+  white-bbb: #bbb,
+  gray-444: #444
 );
 
 $theme-colors: (
@@ -19,7 +21,9 @@ $theme-colors: (
   danger: map-get($colors, danger),
   light: map-get($colors, light),
   dark: map-get($colors, dark),
-  link: map-get($colors, link)
+  link: map-get($colors, link),
+  white-bbb: map-get($colors, white-bbb),
+  gray-444: map-get($colors, gray-444)
 ) !default;
 
 @import "node_modules/bootstrap/scss/bootstrap";

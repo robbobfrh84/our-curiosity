@@ -53,10 +53,8 @@ export default class User extends Component {
       } else {
         API.createUser({ userName: userName, password: password, email: email })
           .then(res => {
-            console.log('sucesssss')
             this.state.updateUser(res.data)
             this.state.history.goBack()
-            // add user to site_state
           })
           .catch(err => {
             if (err) {
@@ -72,7 +70,6 @@ export default class User extends Component {
           if (res.data && res.data.userName) {
             this.state.updateUser(res.data)
             this.state.history.goBack()
-            // add user to site_state
           }
           if (res.data === "unknown") {
             alert("User unknown or incorrct password")

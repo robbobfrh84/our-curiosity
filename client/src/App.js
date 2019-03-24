@@ -24,6 +24,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    const obj = {...this.state.rootData}
+    obj.site_state.user = sessionStorage.ourCuriosityUser || false
+    obj.site_state.user_id = sessionStorage.ourCuriosityId || false
+    this.setState({rootData: obj})
     this.putGetAdmin()
   }
 
@@ -46,6 +50,17 @@ class App extends Component {
     const rootData = {...this.state.rootData}
     rootData.site_state.user = user.userName
     rootData.site_state.user_id = user._id
+    sessionStorage.ourCuriosityUser = user.userName
+    sessionStorage.ourCuriosityId = user._id
+    this.setState({rootData: rootData})
+  }
+
+  logout = () => {
+    const rootData = {...this.state.rootData}
+    rootData.site_state.user = false
+    rootData.site_state.user_id = false
+    sessionStorage.ourCuriosityUser = false
+    sessionStorage.ourCuriosityId = false
     this.setState({rootData: rootData})
   }
 
@@ -62,7 +77,7 @@ class App extends Component {
               />}
             />
             <Route path="/"
-              render={() => <NavPages app={this.state}/>}
+              render={() => <NavPages app={this.state} logout={this.logout}/>}
             />
           </Switch>
         </BrowserRouter>
@@ -72,12 +87,15 @@ class App extends Component {
 
 }
 
-function NavPages(props) {
+function NavPages(props, logout) {
+
+  console.log(props.logout)
   return (
     <div>
       <NavBar
         title={props.app.rootData.website_title}
         site_state={props.app.rootData.site_state}
+        logout={props.logout}
       />
       <Switch>
         <Route path="/(|home|landing)/"
