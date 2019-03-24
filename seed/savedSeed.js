@@ -6,8 +6,10 @@ const Saved = {
 
     const saveds = [
       {
+        name: "img_102693",
+        sol: 1000,
         image: {
-          "id":"102693",
+          "id":102693,
           "img_src": "http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FLB_486265257EDR_F0481570FHAZ00323M_.JPG",
           "earth_date": "2015-05-30",
           "camera": {
@@ -19,6 +21,8 @@ const Saved = {
         }
       },
       {
+        name: "img_102694",
+        sol: 1000,
         image: {
           "id": 102694,
           "img_src": "http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FRB_486265257EDR_F0481570FHAZ00323M_.JPG",

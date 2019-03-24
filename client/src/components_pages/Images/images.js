@@ -9,6 +9,7 @@ export default class Images extends Component {
 
   state = {
     site_state: this.props.site_state,
+    history: this.props.history,
     pageData: this.props.pageData,
     sol: "1000",
     page: "1",
@@ -17,6 +18,7 @@ export default class Images extends Component {
   }
 
   findPage = () => {
+    this.setState({viewImage: {}})
     API.findPage( this.state.sol, this.state.page)
       .then(res => {
         this.setState({images: res.data.images})
@@ -31,11 +33,17 @@ export default class Images extends Component {
     })
   }
 
+  componentWillReceiveProps(p,z){
+    this.setState({viewImage: {}})
+  }
+
   viewImage = (image) => {
     const imageData = {
       image: image,
       user: this.state.site_state.user,
-      show: true
+      userId: this.state.site_state.user_id,
+      show: true,
+      sol: this.state.sol
     }
     this.setState({viewImage: imageData})
   }
@@ -97,7 +105,7 @@ export default class Images extends Component {
           {this.state.images.length > 0 &&
             this.state.images.map( (img, i) => (
               <Card className="card bg-secondary" key={img.id}>
-              <Card.Img variant="top" src={img.img_src} />
+                <Card.Img variant="top" src={img.img_src} />
                 <Card.Body>
                  <Card.Title>Title</Card.Title>
                  <Card.Text>
@@ -110,7 +118,10 @@ export default class Images extends Component {
           }
         </div>
 
-        <ViewImage viewImage={this.state.viewImage} />
+        <ViewImage
+          viewImage={this.state.viewImage}
+          history={this.state.history}
+        />
         <br /><br />
         <Footer />
       </div>

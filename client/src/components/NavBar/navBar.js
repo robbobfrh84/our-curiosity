@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import "./navBar.sass"
 import { Navbar, Nav, Button, Dropdown } from 'react-bootstrap'
 import Mars from '../../images/mars.svg'
-import UserIcon from '../../images/user-icon.svg'
+import UserIcon from '../../images/user-icon1.svg'
 
 
 export default function NavBar(props) {
@@ -43,7 +43,7 @@ export default function NavBar(props) {
             <hr></hr>
           </div>
 
-            {!props.site_state.user &&
+            {(!props.site_state.user || props.site_state.user === "false") &&
               <Link to="/signin" className="full">
                 <Button variant="outline-success bg-light">
                   Sign In
@@ -51,20 +51,22 @@ export default function NavBar(props) {
               </Link>
             }
 
-            {props.site_state.user &&
+            {(props.site_state.user && props.site_state.user !== "false") &&
+
               <Dropdown alignRight>
-                <Dropdown.Toggle id="dropdown-basic"
-                  variant="outline-primary bg-light text-white-bbb">
+
+                <Dropdown.Toggle id="dropdown-basic" className="dropdown-box"
+                  variant="outline-none text-white-bbb">
+                  {props.site_state.user}
                   <span className="user-icon-container">
                     <img src={UserIcon} alt="UserIcon" className="user-icon"/>
                   </span>
-
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu className="bg-primary" title="Dropdown right">
-                  <Dropdown.Item className="text-gray-444">
-                    Saved Images
-                  </Dropdown.Item>
+                  <Link to="/observations" className="text-gray-444  dropdown-item" >
+                      Saved Images
+                  </Link>
                   <br />
                   <Dropdown.Item className="text-gray-444"
                     onClick={props.logout}>
@@ -75,6 +77,7 @@ export default function NavBar(props) {
                     {props.site_state.user}
                   </Dropdown.Item>
                 </Dropdown.Menu>
+
               </Dropdown>
             }
 
@@ -84,3 +87,10 @@ export default function NavBar(props) {
   )
 
 }
+// 
+// <Route exact path="/observations"
+//   render={route => <Observations {...route}
+//     pageData={props.app.rootData.pages.observations}
+//     for="community"
+//   />}
+// />

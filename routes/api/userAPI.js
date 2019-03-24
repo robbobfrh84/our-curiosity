@@ -9,4 +9,7 @@ router.route("/")
 router.route("/signin")
   .post(userController.signIn)
 
+router.route("/save")
+  .post(userController.saveImage)
+
 module.exports = router

@@ -22,10 +22,16 @@ export default {
   signIn: function(user){
     return axios.post("/api/user/signin", user)
   },
+  saveUserImage: function(user){
+    return axios.post("/api/user/save", user)
+  },
 
   // 🏞 saved
-  saveImage: function(image, user){
-    return axios.post("/api/saved", {image:image})
+  // saveImage: function(image, user){
+  //   return axios.post("/api/saved", image)
+  // },
+  getAllSavedImages: function(image, user){
+    return axios.get("/api/saved")
   }
 
 }
