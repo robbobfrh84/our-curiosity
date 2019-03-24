@@ -61,7 +61,7 @@ export default class ViewImage extends Component {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={this.saveImage}>
-              Save Changes
+              Save Image
             </Button>
           </Modal.Footer>
         </Modal>
