@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 import API from "./utils/API"
 
 import RootData from "./rootData.json"
+import Root from "./root.json"
+
 import NavBar from "./components/NavBar/navBar.js"
 import Home from "./components_pages/Home/home.js"
 import Images from "./components_pages/Images/images.js"
@@ -20,12 +22,20 @@ class App extends Component {
     super(props)
     this.state = {
       rootData: RootData,
+      userStatus: Root.userStatus,
       manifest: {},
       admin: {}
     }
+    this.setStatus = this.setStatus.bind(this)
+  }
+
+  setStatus({userName, _id}) {
+    // 👋 NOW... gut updateUser and do local storage thing here. NavBar / Home / SignIn
+    this.setState({ userStatus: {userName, _id} })
   }
 
   componentDidMount() {
+
     const obj = {...this.state.rootData}
     if (sessionStorage.ocUser && sessionStorage.ocUser !== "false") {
       obj.site_state.user = sessionStorage.ocUser
@@ -78,6 +88,7 @@ class App extends Component {
                 pageData={this.state.rootData.pages.signIn}
                 site_state={this.state.rootData.site_state}
                 updateUser={this.updateUser}
+                setStatus={this.setStatus}
               />}
             />
             <Route path="/"
@@ -104,7 +115,8 @@ function NavPages(props, logout) {
         <Route path="/(|home|landing)/"
           render={route => <Home {...route}
             manifest={props.app.manifest}
-            pageData={props.app.rootData}
+            // pageData={props.app.rootData}
+            status={props.app.userStatus}
             admin={props.app.admin}
           />}
         />
