@@ -92,7 +92,7 @@ class App extends Component {
               />}
             />
             <Route path="/"
-              render={() => <NavPages app={this.state} logout={this.logout}/>}
+              render={() => <NavBarPages app={this.state} logout={this.logout}/>}
             />
           </Switch>
         </BrowserRouter>
@@ -102,7 +102,7 @@ class App extends Component {
 
 }
 
-function NavPages(props, logout) {
+function NavBarPages(props, logout) {
 
   return (
     <div>
