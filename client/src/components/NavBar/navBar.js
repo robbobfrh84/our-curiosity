@@ -5,11 +5,10 @@ import { Navbar, Nav, Button, Dropdown } from 'react-bootstrap'
 import Mars from '../../images/mars.svg'
 import UserIcon from '../../images/user-icon1.svg'
 
-
 export default function NavBar(props) {
 
   return (
-    <Navbar expand="lg" className="navbar bg-secondary" >
+    <Navbar expand="md" className="navbar bg-secondary" >
       <Navbar.Brand>
         <Link to="/" className="title">
           <span>
@@ -87,7 +86,7 @@ export default function NavBar(props) {
   )
 
 }
-// 
+//
 // <Route exact path="/observations"
 //   render={route => <Observations {...route}
 //     pageData={props.app.rootData.pages.observations}

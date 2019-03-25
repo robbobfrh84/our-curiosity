@@ -25,7 +25,7 @@ After updating and testing on the master branch run...
 
 # Resources
 
-Passport JS: 
+Passport JS:
 - http://www.passportjs.org
 
 Favicon Generator:
@@ -33,3 +33,6 @@ Favicon Generator:
 
 MERN Google Cloud Services
 - https://cloud.google.com/blog/products/databases/build-it-like-you-mean-it-with-mongodb-atlas-on-gcp
+
+React
+- Redux state with user example: https://blog.logrocket.com/why-use-redux-reasons-with-clear-examples-d21bffd5835

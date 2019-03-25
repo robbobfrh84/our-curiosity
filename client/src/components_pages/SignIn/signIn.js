@@ -5,18 +5,35 @@ import "./signIn.sass"
 
 export default class User extends Component {
 
-  state = {
-    pageData: this.props.pageData,
-    history: this.props.history,
-    site_state: this.props.site_state,
-    updateUser: this.props.updateUser,
-    userName: "",
-    email: "",
-    password: "",
-    confirm: "",
-    focus: "userName",
-    isSignUp: "false"
+  constructor(props){
+    super(props)
+    console.log("sign in props: ", props)
+    this.state = {
+      pageData: this.props.pageData,
+      history: this.props.history,
+      site_state: this.props.site_state,
+      updateUser: this.props.updateUser,
+      userName: "",
+      email: "",
+      password: "",
+      confirm: "",
+      focus: "userName",
+      isSignUp: "false"
+    }
   }
+
+  // state = {
+  //   pageData: this.props.pageData,
+  //   history: this.props.history,
+  //   site_state: this.props.site_state,
+  //   updateUser: this.props.updateUser,
+  //   userName: "",
+  //   email: "",
+  //   password: "",
+  //   confirm: "",
+  //   focus: "userName",
+  //   isSignUp: "false"
+  // }
 
   componentDidMount(){
     this.getUsers()
@@ -69,6 +86,7 @@ export default class User extends Component {
         .then(res => {
           if (res.data && res.data.userName) {
             this.state.updateUser(res.data)
+            this.props.setStatus(res.data)
             this.state.history.goBack()
           }
           if (res.data === "unknown") {

@@ -16,7 +16,6 @@ export default class Obervations extends Component {
   }
 
   componentDidMount(){
-    console.log(this.state)
     this.getAllSavedImages()
   }
 

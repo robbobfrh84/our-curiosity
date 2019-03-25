@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import Footer from "../../components/Footer/footer.js"
 import Rover from "../../images/rover.svg"
+import SubTitle from "../../subTitle.txt"
 
 import "./home.sass"
 
@@ -8,11 +9,19 @@ export default class Home extends Component {
 
   constructor(props){
     super(props)
+    console.log("home super(props)", props)
     this.state = {
-      pageData: props.pageData,
+      subTitle: "",
+      // pageData: props.pageData,
       manifest: props.manifest,
       admin: props.admin
     }
+  }
+
+  componentDidMount(){
+    fetch(SubTitle)
+      .then(r => r.text())
+      .then(t => this.setState({subTitle: t}) )
   }
 
   componentWillReceiveProps({manifest, admin}){
@@ -30,6 +39,13 @@ export default class Home extends Component {
   render() {
     return (
       <div className="home">
+
+        {this.props.status.userName && <>
+          <br />
+          <h3 className="text-warning">
+            Welcome, {this.props.status.userName} !
+          </h3>
+        </>}
 
         <div className="imageContainer">
           <img src={Rover} alt="Rover" className="roverSVG"
@@ -95,9 +111,9 @@ export default class Home extends Component {
             <br /><br />
             <hr />
             <h5 style={{width:590, margin:"auto"}} className="text-secondary">
-              <strong> {this.state.pageData.website_title} </strong>
+              <strong> Our Curiosity </strong>
               <br></br>
-              {this.state.pageData.website_subtitle}
+              {this.state.subTitle}
             </h5>
             <br /><br />
           </div>
