@@ -108,7 +108,7 @@ function NavBarPages(props) {
         <Route exact path="/admin" render={Admin} />}/>
       </Switch>
 
-      <Footer />
+      <Footer images={props.app.images}/>
 
     </div>
   )

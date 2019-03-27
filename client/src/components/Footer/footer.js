@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom'
 import { Row, Col, Container, Button } from 'react-bootstrap'
 import "./footer.sass"
 
-class Footer extends React.Component {
+export default class Footer extends React.Component {
 
   state = {
     date: "",
-    page: window.location.pathname
   }
 
   componentDidMount(){
@@ -15,12 +14,7 @@ class Footer extends React.Component {
   }
 
   componentDidUpdate(props){
-    if (props.force) {
-      const stickyFooter = document.getElementById("sticky-footer")
-      stickyFooter.style.position = "relative"
-    } else {
-      this.setFooterPosition()
-    }
+    window.requestAnimationFrame(this.setFooterPosition)
   }
 
   setFooterPosition(){ // Do some CRAZY stuff to keep footer in place for dynamic data-driven updates.
@@ -77,7 +71,4 @@ class Footer extends React.Component {
       </div>
     )
   }
-
 }
-
-export default Footer

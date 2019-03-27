@@ -9,6 +9,7 @@ export default function NavBar(props) {
 
   return (
     <Navbar expand="md" className="navbar bg-secondary" >
+
       <Navbar.Brand>
         <Link to="/" className="title">
           <span>
@@ -19,6 +20,7 @@ export default function NavBar(props) {
 
         </Link>
       </Navbar.Brand>
+
       <Navbar.Toggle aria-controls="basic-navbar-nav"
         className="bg-primary"
       />
@@ -97,7 +99,7 @@ export default function NavBar(props) {
 
         </Nav>
       </Navbar.Collapse>
+      
     </Navbar>
   )
-
 }

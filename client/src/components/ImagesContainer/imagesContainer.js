@@ -1,9 +1,7 @@
 import React, { Component } from "react"
-// import React from "react"
-// import API from "../../utils/API"
 import { Button, Card } from 'react-bootstrap'
 import "./imagesContainer.sass"
-import ViewImage from "../ViewImage/viewImage.js"
+import ImageModal from "../ImageModal/imageModal.js"
 
 export default class ImagesContainer extends Component {
 
@@ -15,16 +13,13 @@ export default class ImagesContainer extends Component {
     this.handleClose = this.handleClose.bind(this)
   }
 
-
   viewImage = (image) => {
-    const imageData = {
-      image: image,
-      user: this.props.userStatus.userName,
-      userId: this.props.userStatus._id,
-      show: true,
-      sol: this.props.sol
-    }
-    this.setState({viewImage: imageData})
+    image.user = this.props.userStatus.userName
+    image.userId = this.props.userStatus._id
+    image.show = true
+    image.sol = this.props.sol
+    image.cameraName = image.camera.full_name
+    this.setState({viewImage: image})
   }
 
   handleClose() {
@@ -36,7 +31,7 @@ export default class ImagesContainer extends Component {
 
   render(){
     return (
-      <div className="image-container">
+      <div className="images-container">
 
         <div className="card-container">
           {this.props.images.length > 0 &&
@@ -57,7 +52,7 @@ export default class ImagesContainer extends Component {
                     ID#{img.id} | earth date: {img.earth_date}
                  </div>
 
-                 <Button variant="primary" className="w-100"
+                 <Button variant="primary" className="card-view-image-btn w-100"
                   onClick={()=>this.viewImage(img)}>
                     View Image
                   </Button>
@@ -68,7 +63,7 @@ export default class ImagesContainer extends Component {
           }
         </div>
 
-        <ViewImage
+        <ImageModal
           viewImage={this.state.viewImage}
           history={this.state.history}
           handleClose={this.handleClose}

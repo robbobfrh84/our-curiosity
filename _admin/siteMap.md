@@ -10,21 +10,40 @@
 ### Component Map (With props & state)
 ```
 App
-  - state ( userStatus, manifest, images )
-  - bind ( setStatus, addPage )
-  (SignIn)
-    - PROPS ( setStatus )
+  state  
+  	- userStatus
+  	- manifest
+  	- images 
+  bind 
+  	- setStatus
+  	- addPage 
+  	
+(SignIn) PROPS 
+	- setStatus
+ 
+[NavBar] PROPS 
+	- userStatus 
+	- setStatus()
+	
+(Home) PROPS 
+	- userStatus 
+	- manifest 
+  
+(Images) PROPS
+	- userStatus
+	- images
+	- addPage() 
+  
+(Observations)
+  - ...
+  
+(Admin: Note revealed in UI)
 
-  NavBar Pages    
-    [NavBar]
-      - PROPS ( userStatus, setStatus() )
-    (Home)
-      - PROPS ( userStatus, manifest )
-    (Images)
-      - PROPS ( userStatus, images, addPage() )
-    (Observations)
-      - ...
-    (Admin: Note revealed in UI)
+[footer]
+  
+
+
+   
 ```
 ### Requests
 
