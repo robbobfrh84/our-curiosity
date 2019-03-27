@@ -7,42 +7,17 @@ export default class User extends Component {
 
   constructor(props){
     super(props)
-    console.log("sign in props: ", props)
     this.state = {
-      pageData: this.props.pageData,
       history: this.props.history,
-      site_state: this.props.site_state,
-      updateUser: this.props.updateUser,
       userName: "",
       email: "",
       password: "",
       confirm: "",
       focus: "userName",
-      isSignUp: "false"
+      isSignUp: "false",
+      title: "Sign In"
     }
-  }
-
-  // state = {
-  //   pageData: this.props.pageData,
-  //   history: this.props.history,
-  //   site_state: this.props.site_state,
-  //   updateUser: this.props.updateUser,
-  //   userName: "",
-  //   email: "",
-  //   password: "",
-  //   confirm: "",
-  //   focus: "userName",
-  //   isSignUp: "false"
-  // }
-
-  componentDidMount(){
-    this.getUsers()
-  }
-
-  getUsers(){
-    API.getUsers()
-      .then(res => this.setState({users: res.data}))
-      .catch(err => console.log(err))
+    this.handleInputChange.bind(this)
   }
 
   toggleSignInUp = () => {
@@ -53,6 +28,7 @@ export default class User extends Component {
       password: "",
       confirm: "",
       focus: "userName",
+      title: this.state.isSignUp === "true" ? "Sign In" : "Sign Up"
     })
 
   }
@@ -70,7 +46,7 @@ export default class User extends Component {
       } else {
         API.createUser({ userName: userName, password: password, email: email })
           .then(res => {
-            this.state.updateUser(res.data)
+            this.props.setStatus(res.data)
             this.state.history.goBack()
           })
           .catch(err => {
@@ -85,7 +61,6 @@ export default class User extends Component {
       API.signIn({ userName: userName, password: password})
         .then(res => {
           if (res.data && res.data.userName) {
-            this.state.updateUser(res.data)
             this.props.setStatus(res.data)
             this.state.history.goBack()
           }
@@ -113,7 +88,7 @@ export default class User extends Component {
 
         <br />
         <h1 className="text-secondary">
-          {this.state.pageData.title}
+          {this.state.title}
         </h1>
         <br />
 

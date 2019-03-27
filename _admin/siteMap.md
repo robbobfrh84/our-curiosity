@@ -1,23 +1,43 @@
 # Front End
 
 ### Pages
+- `/` && `/home`
+- `/Images`
+- `/observations`
+- `/singin`
+- * `/admin` (not revealed in UI)
 
-### Components
-
-### Data Map
-- Redux state with user example: https://blog.logrocket.com/why-use-redux-reasons-with-clear-examples-d21bffd5835
-
+### Component Map (With props & state)
+```
 App
-  - root
-  - manifest
-  - ocManifest
-  - userStatus
+  - state ( userStatus, manifest, images )
+  - bind ( setStatus, addPage )
+  (SignIn)
+    - PROPS ( setStatus )
 
+  NavBar Pages    
+    [NavBar]
+      - PROPS ( userStatus, setStatus() )
+    (Home)
+      - PROPS ( userStatus, manifest )
+    (Images)
+      - PROPS ( images, addPage() )
+    (Observations)
+      - ... 
+    (Admin: Note revealed in UI)
+```
 ### Requests
 
 API
-- `api/admin`
-  - App.js > componentDidMount()
+- admin
+  - get `api/admin` > gets admin manifest
+  - put `api/admin` > increments page view count.  
+- page
+  - get `api/pages/:sol/:page` > get's
+- users
+  - post `api/user` > sign in users
+  - gost `api/users/` >
+  - post `api/images`
 
 ----
 

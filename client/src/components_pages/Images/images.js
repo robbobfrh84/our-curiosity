@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import Footer from "../../components/Footer/footer.js"
 import API from "../../utils/API"
 import { InputGroup, FormControl, Container, Button, Row, Col, Card } from 'react-bootstrap'
 import "./images.sass"
@@ -8,22 +7,49 @@ import ViewImage from "../../components/ViewImage/viewImage.js"
 export default class Images extends Component {
 
   state = {
-    site_state: this.props.site_state,
     history: this.props.history,
-    pageData: this.props.pageData,
     sol: "1000",
     page: "1",
     images: [],
     viewImage: {}
   }
 
+  componentDidMount(){
+    const images = this.props.images
+    const pageSaved = images.pages[images.sol+"_"+images.page]
+    if (pageSaved) {
+      this.setState({
+        images: pageSaved,
+        sol: images.sol,
+        page: images.page
+      })
+    }
+  }
+
+  componentWillReceiveProps(){
+    this.setState({viewImage: {}})
+  }
+
   findPage = () => {
     this.setState({viewImage: {}})
-    API.findPage( this.state.sol, this.state.page)
-      .then(res => {
-        this.setState({images: res.data.images})
-      })
-      .catch(err => console.log(err))
+    const pageSaved = this.props.images.pages[this.state.sol+"_"+this.state.page]
+    if (pageSaved) {
+      this.setState({images: pageSaved})
+    } else {
+      API.findPage(this.state.sol, this.state.page)
+        .then(res => {
+          this.props.addPage({
+            sol: this.state.sol,
+            page: this.state.page,
+            images: res.data.images
+          })
+          this.setState({images: res.data.images})
+          console.log(this.state.images)
+
+        })
+        .catch(err => console.log(err))
+    }
+
   }
 
   handleInputChange = (event) => {
@@ -33,9 +59,6 @@ export default class Images extends Component {
     })
   }
 
-  componentWillReceiveProps(p,z){
-    this.setState({viewImage: {}})
-  }
 
   viewImage = (image) => {
     const imageData = {
@@ -51,13 +74,13 @@ export default class Images extends Component {
   render() {
     return (
       <div className="images">
-
         <br /><br />
         <h1 className="text-info">
-          {this.state.pageData.title}
+
+          Curiosity Photography
+
         </h1>
         <br /><br />
-
         <Container>
           <Row className="justify-content-md-center">
             <Col lg="6">
@@ -105,13 +128,26 @@ export default class Images extends Component {
           {this.state.images.length > 0 &&
             this.state.images.map( (img, i) => (
               <Card className="card bg-secondary" key={img.id}>
-                <Card.Img variant="top" src={img.img_src} />
+
+                <Card.Img variant="top"
+                  src={img.img_src}
+                />
+
                 <Card.Body>
-                 <Card.Title>Title</Card.Title>
-                 <Card.Text>
-                   ...text {img.id}
-                 </Card.Text>
-                 <Button variant="primary" onClick={()=>this.viewImage(img)}>View Image</Button>
+
+                  <div className="text-white">
+                    {img.camera.full_name}
+                  </div>
+
+                  <div className="text-white-bbb">
+                    ID#{img.id} | earth date: {img.earth_date}
+                 </div>
+
+                 <Button variant="primary" className="w-100"
+                  onClick={()=>this.viewImage(img)}>
+                    View Image
+                  </Button>
+
                 </Card.Body>
               </Card>
             ))
@@ -122,8 +158,8 @@ export default class Images extends Component {
           viewImage={this.state.viewImage}
           history={this.state.history}
         />
+
         <br /><br />
-        <Footer />
       </div>
     )
   }

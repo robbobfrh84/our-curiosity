@@ -61,7 +61,6 @@ export default class ViewImage extends Component {
   }
 
   componentWillReceiveProps = (props,x) => {
-    console.log(this.state)
     if (props.viewImage.show) {
       this.handleShow()
       this.setState({

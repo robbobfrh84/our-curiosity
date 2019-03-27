@@ -2,15 +2,12 @@ import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import API from "./utils/API"
 
-import RootData from "./rootData.json"
-import Root from "./root.json"
-
 import NavBar from "./components/NavBar/navBar.js"
+import Footer from "./components/Footer/footer.js"
 import Home from "./components_pages/Home/home.js"
 import Images from "./components_pages/Images/images.js"
 import Observations from "./components_pages/Observations/observations.js"
 import Admin from "./components_pages/Admin/admin.js"
-
 import SignIn from "./components_pages/SignIn/signIn.js"
 
 import './styles/App.sass'
@@ -21,61 +18,39 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      rootData: RootData,
-      userStatus: Root.userStatus,
+      userStatus: { userName: false, _id: false },
       manifest: {},
-      admin: {}
+      images: { sol: "1000", page: "1", pages: {}}
     }
     this.setStatus = this.setStatus.bind(this)
+    this.addPage = this.addPage.bind(this)
   }
 
   setStatus({userName, _id}) {
-    // 👋 NOW... gut updateUser and do local storage thing here. NavBar / Home / SignIn
+    sessionStorage.ourCuriosityUser = JSON.stringify({userName, _id})
     this.setState({ userStatus: {userName, _id} })
   }
 
-  componentDidMount() {
+  addPage({sol, page, images}) {
+    const pages = {...this.state.images.pages}
+    if (!pages[sol+"_"+page]) {
+      pages[sol+"_"+page] = images
+      this.setState({images: {sol,page,pages}})
+    }
+  }
 
-    const obj = {...this.state.rootData}
-    if (sessionStorage.ocUser && sessionStorage.ocUser !== "false") {
-      obj.site_state.user = sessionStorage.ocUser
-      obj.site_state.user_id = sessionStorage.ocId
-      this.setState({rootData: obj})
+  componentDidMount() {
+    if (sessionStorage.ourCuriosityUser) {
+      const user = JSON.parse(sessionStorage.ourCuriosityUser)
+      if (user.userName && user._id) this.setState({userStatus: user})
     }
     this.putGetAdmin()
   }
 
-  putGetAdmin = () => {
+  putGetAdmin() {
     API.putGetAdmin()
-      .then(res => {
-        this.setState({
-          manifest: res.data.mission_manifest,
-          admin: {
-            visits: res.data.visits,
-            images_saved: res.data.images_saved,
-            images_viewed: res.data.images_viewed
-          }
-        })
-      })
+      .then(res => this.setState({manifest: res.data}) )
       .catch(err => console.log(err))
-  }
-
-  updateUser = (user) => {
-    const rootData = {...this.state.rootData}
-    rootData.site_state.user = user.userName
-    rootData.site_state.user_id = user._id
-    sessionStorage.ocUser = user.userName
-    sessionStorage.ocId = user._id
-    this.setState({rootData: rootData})
-  }
-
-  logout = () => {
-    const rootData = {...this.state.rootData}
-    rootData.site_state.user = false
-    rootData.site_state.user_id = false
-    sessionStorage.ocUser = "false"
-    sessionStorage.ocId = "false"
-    this.setState({rootData: rootData})
   }
 
   render() {
@@ -85,14 +60,15 @@ class App extends Component {
           <Switch>
             <Route exact path="/signin"
               render={route => <SignIn {...route}
-                pageData={this.state.rootData.pages.signIn}
-                site_state={this.state.rootData.site_state}
-                updateUser={this.updateUser}
                 setStatus={this.setStatus}
               />}
             />
             <Route path="/"
-              render={() => <NavBarPages app={this.state} logout={this.logout}/>}
+              render={() => <NavBarPages
+                app={this.state}
+                setStatus={this.setStatus}
+                addPage={this.addPage}
+              />}
             />
           </Switch>
         </BrowserRouter>
@@ -102,39 +78,37 @@ class App extends Component {
 
 }
 
-function NavBarPages(props, logout) {
+function NavBarPages(props) {
 
   return (
     <div>
       <NavBar
-        title={props.app.rootData.website_title}
-        site_state={props.app.rootData.site_state}
-        logout={props.logout}
+        userStatus={props.app.userStatus}
+        setStatus={props.setStatus}
       />
       <Switch>
         <Route path="/(|home|landing)/"
           render={route => <Home {...route}
+            userStatus={props.app.userStatus}
             manifest={props.app.manifest}
-            // pageData={props.app.rootData}
-            status={props.app.userStatus}
-            admin={props.app.admin}
           />}
         />
         <Route exact path="/images"
           render={route => <Images {...route}
-            pageData={props.app.rootData.pages.images}
-            site_state={props.app.rootData.site_state}
+            images={props.app.images}
+            addPage={props.addPage}
           />}
         />
         <Route exact path="/observations"
           render={route => <Observations {...route}
-            pageData={props.app.rootData.pages.observations}
             for="community"
           />}
         />
-        <Route exact path="/admin" render={Admin} />}
-        />
+        <Route exact path="/admin" render={Admin} />}/>
       </Switch>
+
+      <Footer />
+
     </div>
   )
 }

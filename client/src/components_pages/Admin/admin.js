@@ -3,7 +3,7 @@ import Footer from "../../components/Footer/footer.js"
 import { ButtonToolbar, Button } from "react-bootstrap"
 import "./admin.sass"
 
-export default function Home(props) {
+export default function Admin() {
 
   return (
       <div className="theme">
