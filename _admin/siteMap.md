@@ -21,9 +21,9 @@ App
     (Home)
       - PROPS ( userStatus, manifest )
     (Images)
-      - PROPS ( images, addPage() )
+      - PROPS ( userStatus, images, addPage() )
     (Observations)
-      - ... 
+      - ...
     (Admin: Note revealed in UI)
 ```
 ### Requests

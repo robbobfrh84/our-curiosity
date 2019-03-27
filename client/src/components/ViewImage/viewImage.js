@@ -8,8 +8,8 @@ export default class ViewImage extends Component {
 
   constructor(props) {
     super(props)
-    this.handleShow = this.handleShow.bind(this)
-    this.handleClose = this.handleClose.bind(this)
+    // this.handleShow = this.handleShow.bind(this)
+    // this.handleClose = this.handleClose.bind(this)
     this.state = {
       show: false,
       image: this.props.viewImage,
@@ -50,33 +50,38 @@ export default class ViewImage extends Component {
     }
   }
 
-  handleClose() {
-    const obj = {...this.state.image}
-    obj.show = false
-    this.setState({ show: false, image: obj })
-  }
+  // handleClose() {
+  //   console.log('viewImageClose')
+  //   const obj = {...this.state.image}
+  //   obj.show = false
+  //   this.setState({ show: false, image: obj })
+  // }
 
-  handleShow() {
-    this.setState({ show: true })
-  }
+  // handleShow() {
+  //   this.setState({ show: true })
+  // }
 
-  componentWillReceiveProps = (props,x) => {
-    if (props.viewImage.show) {
-      this.handleShow()
-      this.setState({
-        image: props.viewImage.image,
-        user: props.viewImage.user,
-        userId: props.viewImage.userId,
-        show: props.viewImage.show,
-        sol: props.viewImage.sol
-      })
-    }
+  componentWillReceiveProps = (props) => {
+    console.log(props)
+    // if (props.viewImage.show) {
+    //   this.handleShow()
+    //   this.setState({
+    //     image: props.viewImage.image,
+    //     user: props.viewImage.user,
+    //     userId: props.viewImage.userId,
+    //     show: props.viewImage.show,
+    //     sol: props.viewImage.sol
+    //   })
+    // }
   }
 
   render() {
     return (
       <div>
-        <Modal size="xl" show={this.state.show} onHide={this.handleClose}>
+        <Modal size="xl"
+          show={this.props.viewImage.show}
+          onHide={this.props.handleClose}
+        >
           <Modal.Header closeButton>
             <Modal.Title>
             Date taken: {this.state.image.earth_date}
