@@ -14,7 +14,9 @@ export default function NavBar(props) {
           <span>
             <img src={Mars} alt="Mars" className="marsSVG"/>
           </span>
-          {props.title}
+
+          Our Curiosty
+
         </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"
@@ -22,41 +24,48 @@ export default function NavBar(props) {
       />
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
         <Nav>
+          <div className="spacer">
+            <hr></hr>
+          </div>
+          <Link to="/images" className="navBar-btn">
+            <Button variant="outline-primary noborder">
 
-          <Link to="/home">
-            <Button variant="outline-primary noborder"> Home </Button>
+              Image Log
+
+            </Button>
           </Link>
           <div className="spacer">
             <hr></hr>
           </div>
-          <Link to="/images" >
-            <Button variant="outline-primary noborder"> Image Log </Button>
-          </Link>
-          <div className="spacer">
-            <hr></hr>
-          </div>
-          <Link to="/observations" >
-            <Button variant="outline-primary noborder"> Obervations </Button>
+          <Link to="/observations" className="navBar-btn">
+            <Button variant="outline-primary noborder">
+
+              Obervations
+
+            </Button>
           </Link>
           <div className="spacer">
             <hr></hr>
           </div>
 
-            {(!props.site_state.user || props.site_state.user === "false") &&
+            {(!props.userStatus.userName || props.userStatus.userName === "false") &&
               <Link to="/signin" className="full">
                 <Button variant="outline-success bg-light">
+
                   Sign In
+
                 </Button>
               </Link>
             }
 
-            {(props.site_state.user && props.site_state.user !== "false") &&
-
+            {(props.userStatus.userName && props.userStatus.userName !== "false") &&
               <Dropdown alignRight>
 
                 <Dropdown.Toggle id="dropdown-basic" className="dropdown-box"
                   variant="outline-none text-white-bbb">
-                  {props.site_state.user}
+
+                  {props.userStatus.userName}
+
                   <span className="user-icon-container">
                     <img src={UserIcon} alt="UserIcon" className="user-icon"/>
                   </span>
@@ -64,16 +73,22 @@ export default function NavBar(props) {
 
                 <Dropdown.Menu className="bg-primary" title="Dropdown right">
                   <Link to="/observations" className="text-gray-444  dropdown-item" >
-                      Saved Images
+
+                    Saved Images
+
                   </Link>
                   <br />
                   <Dropdown.Item className="text-gray-444"
-                    onClick={props.logout}>
+                    onClick={props.setStatus}>
+
                     Log Out
+
                   </Dropdown.Item>
                   <hr />
                   <Dropdown.Item className="text-white" disabled>
-                    {props.site_state.user}
+
+                    {props.userStatus.userName}
+
                   </Dropdown.Item>
                 </Dropdown.Menu>
 
@@ -86,10 +101,3 @@ export default function NavBar(props) {
   )
 
 }
-//
-// <Route exact path="/observations"
-//   render={route => <Observations {...route}
-//     pageData={props.app.rootData.pages.observations}
-//     for="community"
-//   />}
-// />

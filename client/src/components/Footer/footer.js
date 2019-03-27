@@ -50,7 +50,7 @@ class Footer extends React.Component {
 
                 <Col md={3}>
                   <Link to="/images" >
-                    <Button variant="outline-primary"> Images </Button>
+                    <Button variant="outline-primary"> Image Log </Button>
                   </Link>
                 </Col>
 

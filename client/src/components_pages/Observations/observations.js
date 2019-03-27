@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import Footer from "../../components/Footer/footer.js"
 import { Card } from "react-bootstrap"
 import API from "../../utils/API"
 import "./observations.sass"
@@ -33,7 +32,7 @@ export default class Obervations extends Component {
 
         <br /><br />
         <h1 className="text-info">
-          {this.state.pageData.title}
+          Community Observations
         </h1>
         <br /><br />
 
@@ -54,12 +53,11 @@ export default class Obervations extends Component {
         </div>
 
         <br /><br />
-
-        {!this.state.images.length > 0 && <Footer /> }
-        {this.state.images.length > 0 && <Footer force="true"/> }
-
       </div>
     )
   }
 
 }
+
+// {!this.state.images.length > 0 && <Footer /> }
+// {this.state.images.length > 0 && <Footer force="true"/> }
