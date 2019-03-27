@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 import API from "../../utils/API"
-import { InputGroup, FormControl, Container, Button, Row, Col, Card } from 'react-bootstrap'
+import { InputGroup, FormControl, Container, Button, Row, Col } from 'react-bootstrap'
 import "./images.sass"
-import ViewImage from "../../components/ViewImage/viewImage.js"
+import ImagesContainer from "../../components/ImagesContainer/imagesContainer.js"
 
 export default class Images extends Component {
 
@@ -60,16 +60,16 @@ export default class Images extends Component {
   }
 
 
-  viewImage = (image) => {
-    const imageData = {
-      image: image,
-      user: this.state.site_state.user,
-      userId: this.state.site_state.user_id,
-      show: true,
-      sol: this.state.sol
-    }
-    this.setState({viewImage: imageData})
-  }
+  // viewImage = (image) => {
+  //   const imageData = {
+  //     image: image,
+  //     user: this.state.site_state.user,
+  //     userId: this.state.site_state.user_id,
+  //     show: true,
+  //     sol: this.state.sol
+  //   }
+  //   this.setState({viewImage: imageData})
+  // }
 
   render() {
     return (
@@ -124,6 +124,14 @@ export default class Images extends Component {
         </Container>
         <br />
 
+        <ImagesContainer
+          images={this.state.images}
+          userStatus={this.props.userStatus}
+          sol={this.state.sol}
+        />
+
+        {/*
+
         <div className="card-container">
           {this.state.images.length > 0 &&
             this.state.images.map( (img, i) => (
@@ -160,6 +168,8 @@ export default class Images extends Component {
         />
 
         <br /><br />
+
+      */}
       </div>
     )
   }

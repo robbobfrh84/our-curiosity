@@ -95,6 +95,7 @@ function NavBarPages(props) {
         />
         <Route exact path="/images"
           render={route => <Images {...route}
+            userStatus={props.app.userStatus}
             images={props.app.images}
             addPage={props.addPage}
           />}
