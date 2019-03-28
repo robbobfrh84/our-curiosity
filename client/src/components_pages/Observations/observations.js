@@ -1,17 +1,12 @@
 import React, { Component } from "react"
-import { Card } from "react-bootstrap"
 import API from "../../utils/API"
+import ImagesContainer from "../../components/ImagesContainer/imagesContainer.js"
 import "./observations.sass"
 
 export default class Obervations extends Component {
 
-  constructor(props){
-    super()
-    this.state = {
-      pageData: props.pageData,
-      forWho: props.for,
-      images: []
-    }
+  state = {
+    images: []
   }
 
   componentDidMount(){
@@ -21,43 +16,29 @@ export default class Obervations extends Component {
   getAllSavedImages = () => {
     API.getAllSavedImages()
       .then(res => {
-        this.setState({images: res.data || []})
+        this.curateImages(res.data)
       })
       .catch(err => console.log(err))
+  }
+
+  curateImages(img){
+    this.setState({images: img.map(i=>i.image)})
   }
 
   render() {
     return (
       <div className="observations">
 
-        <br /><br />
-        <h1 className="text-info">
-          Community Observations
-        </h1>
-        <br /><br />
+        <ImagesContainer
+          images={this.state.images}
+          status={this.props.status}
+          history={this.props.history}
+          noSaveButton={true}
+          bgcolor={"warning"}
+        />
 
-        <div className="card-container">
-        {this.state.images.length > 0 &&
-          this.state.images.map( (img, i) => (
-            <Card className="card bg-secondary" key={i} >
-              <Card.Img variant="top" src={img.image.img_src} />
-              <Card.Body>
-               <Card.Title>ID#{img.image.id}</Card.Title>
-               <Card.Text>
-                 Saved ({img.totalSaved}) times
-               </Card.Text>
-              </Card.Body>
-            </Card>
-          ))
-        }
-        </div>
-
-        <br /><br />
       </div>
     )
   }
 
 }
-
-// {!this.state.images.length > 0 && <Footer /> }
-// {this.state.images.length > 0 && <Footer force="true"/> }

@@ -1,3 +1,12 @@
+<!-- [![Website our-curiosity.com](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://our-curiosity.com) -->
+
+[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/robbobfrh84)
+
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+
+
 # our-curiosity
 Fan and observation page for NASA's Curiosity Rover.
 
@@ -36,3 +45,4 @@ MERN Google Cloud Services
 
 React
 - Redux state with user example: https://blog.logrocket.com/why-use-redux-reasons-with-clear-examples-d21bffd5835
+- Example ToDo list with Redux: https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/todos

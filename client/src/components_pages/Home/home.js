@@ -1,8 +1,6 @@
 import React, { Component } from "react"
-// import Footer from "../../components/Footer/footer.js"
 import Rover from "../../images/rover.svg"
 import SubTitle from "../../subTitle.txt"
-
 import "./home.sass"
 
 export default class Home extends Component {
@@ -24,13 +22,15 @@ export default class Home extends Component {
   }
 
   render() {
+    const userStatus = this.props.status("READ", "userStatus")
+    const manifest = this.props.status("READ", "manifest")
     return (
       <div className="home">
 
-        {this.props.userStatus.userName && <>
+        {userStatus.userName && <>
           <br />
           <h3 className="text-warning">
-            Welcome, {this.props.userStatus.userName} !
+            Welcome, {userStatus.userName} !
           </h3>
         </>}
 
@@ -44,33 +44,33 @@ export default class Home extends Component {
           &bull; Mission Manifest &bull;
         </h1>
 
-        { !this.props.manifest.mission_manifest &&
+        { !manifest.mission_manifest &&
           <div>
             <h1 className="text-secondary">?</h1> <br/ >
           </div>
         }
 
-        { this.props.manifest.mission_manifest &&
+        { manifest.mission_manifest &&
           <div>
             <h4 className="text-primary">
-              Launch Date: {this.props.manifest.mission_manifest.launch_date}
+              Launch Date: {manifest.mission_manifest.launch_date}
             </h4>
             <h4 className="text-primary">
-              Landing Date: {this.props.manifest.mission_manifest.landing_date}
+              Landing Date: {manifest.mission_manifest.landing_date}
             </h4>
             <h4 className="text-primary">
-              Last Updated: {this.props.manifest.mission_manifest.max_date}
+              Last Updated: {manifest.mission_manifest.max_date}
             </h4>
             <h4 className="text-primary">
               Martian Days("sols"):&nbsp;
-              {this.dressNum(this.props.manifest.mission_manifest.max_sol)}
+              {this.dressNum(manifest.mission_manifest.max_sol)}
             </h4>
             <h4 className="text-primary">
-              Status: {this.props.manifest.mission_manifest.status}
+              Status: {manifest.mission_manifest.status}
             </h4>
             <h4 className="text-primary">
               Total Photos:&nbsp;
-              {this.dressNum(this.props.manifest.mission_manifest.total_photos)}
+              {this.dressNum(manifest.mission_manifest.total_photos)}
             </h4>
             <br />
           </div>
@@ -80,22 +80,22 @@ export default class Home extends Component {
           &bull; Community Activity &bull;
         </h1>
 
-        { !this.props.manifest.visits &&
+        { !manifest.visits &&
           <div>
             <h1 className="text-secondary">?</h1> <br/ >
           </div>
         }
 
-        { this.props.manifest.visits &&
+        { manifest.visits &&
           <div>
             <h4 className="text-primary">
-              Visits({this.props.manifest.visits})
+              Visits({manifest.visits})
             </h4>
               <h4 className="text-primary">
-                Saved Images({this.props.manifest.images_saved})
+                Saved Images({manifest.images_saved})
               </h4>
               <h4 className="text-primary">
-                Images Viewed({this.props.manifest.images_viewed})
+                Images Viewed({manifest.images_viewed})
               </h4>
               <br /><br />
               <hr />

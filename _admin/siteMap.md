@@ -13,37 +13,21 @@ App
   state  
   	- userStatus
   	- manifest
-  	- images 
-  bind 
-  	- setStatus
-  	- addPage 
-  	
-(SignIn) PROPS 
-	- setStatus
- 
-[NavBar] PROPS 
-	- userStatus 
-	- setStatus()
-	
-(Home) PROPS 
-	- userStatus 
-	- manifest 
-  
-(Images) PROPS
-	- userStatus
-	- images
-	- addPage() 
-  
-(Observations)
-  - ...
-  
-(Admin: Note revealed in UI)
+  	- images
+    - lastViewedImage
+  bind
+  	- status()
+
+(SignIn) PROPS - status()
+
+[NavBar] PROPS - status()
+
+  (Home) PROPS - status()
+  (Images) PROPS - status()
+  (Observations) PROPS - status()
+  (Admin) ...Not revealed in UI
 
 [footer]
-  
-
-
-   
 ```
 ### Requests
 

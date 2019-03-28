@@ -7,15 +7,13 @@ import ImagesContainer from "../../components/ImagesContainer/imagesContainer.js
 export default class Images extends Component {
 
   state = {
-    history: this.props.history,
     sol: "1000",
     page: "1",
     images: [],
-    viewImage: {}
   }
 
   componentDidMount(){
-    const images = this.props.images
+    const images = this.props.status("READ", "images")
     const pageSaved = images.pages[images.sol+"_"+images.page]
     if (pageSaved) {
       this.setState({
@@ -27,17 +25,19 @@ export default class Images extends Component {
   }
 
   findPage = () => {
-    const pageSaved = this.props.images.pages[this.state.sol+"_"+this.state.page]
+    const images = this.props.status("READ", "images")
+    const pageSaved = images.pages[this.state.sol+"_"+this.state.page]
     if (pageSaved) {
       this.setState({images: pageSaved})
     } else {
       API.findPage(this.state.sol, this.state.page)
         .then(res => {
-          this.props.addPage({
+          const page = {
             sol: this.state.sol,
             page: this.state.page,
             images: res.data.images
-          })
+          }
+          this.props.status("ADD_PAGE", "images", page)
           this.setState({images: res.data.images})
         })
         .catch(err => console.log(err))
@@ -109,8 +109,10 @@ export default class Images extends Component {
 
         <ImagesContainer
           images={this.state.images}
-          userStatus={this.props.userStatus}
+          status={this.props.status}
           sol={this.state.sol}
+          history={this.props.history}
+          bgcolor={"secondary"}
         />
 
       </div>

@@ -20,10 +20,35 @@ class App extends Component {
     this.state = {
       userStatus: { userName: false, _id: false },
       manifest: {},
-      images: { sol: "1000", page: "1", pages: {}}
+      images: { sol: "1000", page: "1", pages: {}},
+      lastViewedImage: {}
     }
-    this.setStatus = this.setStatus.bind(this)
-    this.addPage = this.addPage.bind(this)
+    this.status = this.status.bind(this)
+  }
+
+  componentDidMount() {
+    if (sessionStorage.ourCuriosityUser) {
+      const user = JSON.parse(sessionStorage.ourCuriosityUser)
+      if (user.userName && user._id) this.setState({userStatus: user})
+    }
+    this.putGetAdmin()
+  }
+
+  status(method, state, data) {
+    switch (method) {
+      case "READ": return this.state[state]
+      case "SET": this.setState({[state]: data}); break
+      case "ADD_PAGE": this.addPage(data); break
+      case "SET_USER": this.setStatus(data); break
+      default:
+        return "unknown status update"
+    }
+  }
+
+  putGetAdmin() {
+    API.putGetAdmin()
+      .then(res => this.setState({manifest: res.data}) )
+      .catch(err => console.log(err))
   }
 
   setStatus({userName, _id}) {
@@ -39,36 +64,16 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    if (sessionStorage.ourCuriosityUser) {
-      const user = JSON.parse(sessionStorage.ourCuriosityUser)
-      if (user.userName && user._id) this.setState({userStatus: user})
-    }
-    this.putGetAdmin()
-  }
-
-  putGetAdmin() {
-    API.putGetAdmin()
-      .then(res => this.setState({manifest: res.data}) )
-      .catch(err => console.log(err))
-  }
-
   render() {
     return (
       <div className="app">
         <BrowserRouter>
           <Switch>
             <Route exact path="/signin"
-              render={route => <SignIn {...route}
-                setStatus={this.setStatus}
-              />}
+              render={route => <SignIn {...route} status={this.status} />}
             />
             <Route path="/"
-              render={() => <NavBarPages
-                app={this.state}
-                setStatus={this.setStatus}
-                addPage={this.addPage}
-              />}
+              render={() => <NavBarPages status={this.status} />}
             />
           </Switch>
         </BrowserRouter>
@@ -78,37 +83,26 @@ class App extends Component {
 
 }
 
-function NavBarPages(props) {
+function NavBarPages({status}) {
 
   return (
     <div>
-      <NavBar
-        userStatus={props.app.userStatus}
-        setStatus={props.setStatus}
-      />
+      <NavBar status={status} />
       <Switch>
         <Route path="/(|home|landing)/"
-          render={route => <Home {...route}
-            userStatus={props.app.userStatus}
-            manifest={props.app.manifest}
-          />}
+          render={route => <Home {...route} status={status} />}
         />
         <Route exact path="/images"
-          render={route => <Images {...route}
-            userStatus={props.app.userStatus}
-            images={props.app.images}
-            addPage={props.addPage}
-          />}
+          render={route => <Images {...route} status={status} />}
         />
         <Route exact path="/observations"
-          render={route => <Observations {...route}
-            for="community"
+          render={route => <Observations {...route} status={status}
           />}
         />
         <Route exact path="/admin" render={Admin} />}/>
       </Switch>
 
-      <Footer images={props.app.images}/>
+      <Footer />
 
     </div>
   )

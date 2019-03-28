@@ -17,7 +17,6 @@ export default class User extends Component {
       isSignUp: "false",
       title: "Sign In"
     }
-    this.handleInputChange.bind(this)
   }
 
   toggleSignInUp = () => {
@@ -46,7 +45,7 @@ export default class User extends Component {
       } else {
         API.createUser({ userName: userName, password: password, email: email })
           .then(res => {
-            this.props.setStatus(res.data)
+            this.props.status("SET_USER", "userStatus", res.data)
             this.state.history.goBack()
           })
           .catch(err => {
@@ -61,7 +60,7 @@ export default class User extends Component {
       API.signIn({ userName: userName, password: password})
         .then(res => {
           if (res.data && res.data.userName) {
-            this.props.setStatus(res.data)
+            this.props.status("SET_USER", "userStatus", res.data)
             this.state.history.goBack()
           }
           if (res.data === "unknown") {

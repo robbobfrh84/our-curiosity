@@ -14,12 +14,14 @@ export default class Footer extends React.Component {
   }
 
   componentDidUpdate(props){
-    window.requestAnimationFrame(this.setFooterPosition)
-  }
-
-  setFooterPosition(){ // Do some CRAZY stuff to keep footer in place for dynamic data-driven updates.
     const stickyFooter = document.getElementById("sticky-footer")
     stickyFooter.style.position = "fixed"
+    setTimeout(()=>{
+      this.setFooterPosition(stickyFooter)
+    },20)
+  }
+
+  setFooterPosition(stickyFooter){ // Do some CRAZY stuff to keep footer in place for dynamic data-driven updates.
     const root = document.getElementById("root")
     if (window.innerHeight > root.clientHeight + stickyFooter.clientHeight) {
       stickyFooter.style.position = "fixed"

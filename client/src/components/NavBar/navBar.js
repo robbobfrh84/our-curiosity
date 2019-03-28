@@ -7,6 +7,8 @@ import UserIcon from '../../images/user-icon1.svg'
 
 export default function NavBar(props) {
 
+  const userStatus = props.status("READ", "userStatus")
+
   return (
     <Navbar expand="md" className="navbar bg-secondary" >
 
@@ -50,7 +52,7 @@ export default function NavBar(props) {
             <hr></hr>
           </div>
 
-            {(!props.userStatus.userName || props.userStatus.userName === "false") &&
+            {(!userStatus.userName || userStatus.userName === "false") &&
               <Link to="/signin" className="full">
                 <Button variant="outline-success bg-light">
 
@@ -60,13 +62,13 @@ export default function NavBar(props) {
               </Link>
             }
 
-            {(props.userStatus.userName && props.userStatus.userName !== "false") &&
+            {(userStatus.userName && userStatus.userName !== "false") &&
               <Dropdown alignRight>
 
                 <Dropdown.Toggle id="dropdown-basic" className="dropdown-box"
                   variant="outline-none text-white-bbb">
 
-                  {props.userStatus.userName}
+                  {userStatus.userName}
 
                   <span className="user-icon-container">
                     <img src={UserIcon} alt="UserIcon" className="user-icon"/>
@@ -81,15 +83,14 @@ export default function NavBar(props) {
                   </Link>
                   <br />
                   <Dropdown.Item className="text-gray-444"
-                    onClick={props.setStatus}>
-
+                    onClick={()=>props.status("SET_USER", "userStatus", {})}>
                     Log Out
 
                   </Dropdown.Item>
                   <hr />
                   <Dropdown.Item className="text-white" disabled>
 
-                    {props.userStatus.userName}
+                    {userStatus.userName}
 
                   </Dropdown.Item>
                 </Dropdown.Menu>
@@ -99,7 +100,7 @@ export default function NavBar(props) {
 
         </Nav>
       </Navbar.Collapse>
-      
+
     </Navbar>
   )
 }
