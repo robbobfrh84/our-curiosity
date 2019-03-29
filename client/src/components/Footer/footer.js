@@ -19,6 +19,12 @@ export default class Footer extends React.Component {
     setTimeout(()=>{
       this.setFooterPosition(stickyFooter)
     },20)
+    setTimeout(()=>{
+      this.setFooterPosition(stickyFooter)
+    },10)
+    setTimeout(()=>{
+      this.setFooterPosition(stickyFooter)
+    },500)
   }
 
   setFooterPosition(stickyFooter){ // Do some CRAZY stuff to keep footer in place for dynamic data-driven updates.
