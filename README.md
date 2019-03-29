@@ -36,7 +36,7 @@ Hypothetically, let's say we wanted to put the app in a subfolder (`webapp`) AND
 - First create the branch on Heroku
   - `git subtree push --prefix webapp heroku testdeploy`
 - Then push that branch against Heroku's master
-  -`git push heroku-dev webapp:master`
+  -`git push heroku webapp:master`
 
 
 # Resources
