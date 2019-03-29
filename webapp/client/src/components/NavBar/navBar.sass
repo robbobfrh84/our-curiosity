@@ -1,0 +1,52 @@
+@import "src/styles/index.scss"
+
+.navbar
+  box-shadow: 0px 5px 5px rgba(200,50,50,0.1)
+  padding: 0px
+  .navBar-btn
+    margin: 0px 5px
+  .title
+    text-decoration: none
+    padding-left: 45px
+  .noborder
+    border: none
+  .full
+    margin-left: 10px
+  .marsSVG
+    position: absolute
+    top: 8px
+    left: 8px
+    width: 40px
+  .spacer
+    display: none
+  .user-icon-container
+    padding-right: 30px
+  .user-icon
+    position: absolute
+    top: 1px
+    right: 0px
+    height: 35px
+  .dropdown-box
+    border-left: 1px solid #444
+    border-radius: 0px
+    padding-left: 15px
+    padding-right: 10px
+    margin-right: 0px
+  .dropdown-toggle::after
+    display: none
+
+@media (max-width: 767px)
+  .navbar
+    .btn
+      margin: auto
+    .full
+      margin: auto
+    .spacer
+      display: block
+    .dropdown-box
+      border-left: 0px solid #444
+    .user-icon-container
+      padding: 0px
+    .user-icon
+      position: relative
+      right: -10px
