@@ -17,27 +17,26 @@ export default class ImagesContainer extends Component {
   }
 
   componentDidMount(){
-    this.setState({viewImage: this.props.status("READ", "lastViewedImage")})
+    this.setState({viewImage: this.props.Root("READ", "lastViewedImage")})
   }
 
   viewImage = (image) => {
     image.show = true
     image.sol = image.sol || this.props.sol
     image.cameraName = image.camera.full_name
-    console.log(image.sol, this.props.sol)
     this.setState({viewImage: image})
-    this.props.status("SET", "lastViewedImage", image)
+    this.props.Root("SET", "lastViewedImage", image)
   }
 
   handleClose() {
     const viewImage = {...this.state.viewImage}
     viewImage.show = false
     this.setState({ viewImage })
-    this.props.status("SET", "lastViewedImage", viewImage)
+    this.props.Root("SET", "lastViewedImage", viewImage)
   }
 
   saveImage() {
-    const user = this.props.status("READ", "userStatus")
+    const user = this.props.Root("READ", "userStatus")
     const userImage = {
       image: {
         name: "img_"+this.state.viewImage.id,
@@ -65,6 +64,9 @@ export default class ImagesContainer extends Component {
 
   render(){
 
+    const name = this.props.bgcolor !== "light" ? "name" : "name2"
+    const imageId = this.props.bgcolor !== "light" ? "image-id" : "image-id2"
+
     return (
       <div className="images-container">
 
@@ -79,13 +81,20 @@ export default class ImagesContainer extends Component {
 
                 <Card.Body>
 
-                  <div className="text-white">
+                  <div className={name}>
                     {img.camera.full_name}
                   </div>
 
-                  <div className="text-white-bbb">
+                  <div className={imageId}>
                     ID#{img.id} | earth date: {img.earth_date}
-                 </div>
+                  </div>
+
+
+                  {img.totalSaved &&
+                  <div className={imageId}>
+                    Image Saved({img.totalSaved})
+                  </div>
+                  }
 
                  <Button variant="primary" className="card-view-image-btn w-100"
                   onClick={()=>this.viewImage(img)}>
@@ -99,7 +108,7 @@ export default class ImagesContainer extends Component {
         </div>
 
         <ImageModal
-          status={this.props.status}
+          Root={this.props.Root}
           handleClose={this.handleClose}
           saveImage={this.saveImage}
           noSaveButton={this.props.noSaveButton}

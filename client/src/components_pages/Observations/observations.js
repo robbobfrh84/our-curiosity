@@ -22,16 +22,29 @@ export default class Obervations extends Component {
   }
 
   curateImages(img){
-    this.setState({images: img.map(i=>i.image)})
+    let image= []
+    for (var i = 0; i < img.length; i++) {
+      img[i].image.totalSaved = img[i].totalSaved
+      image.push(img[i].image)
+    }
+    this.setState({images: image})
   }
 
   render() {
     return (
       <div className="observations">
 
+        <br /><br />
+        <h1 className="text-info">
+
+          &#x2729; Recently Saved Images &#x2729;
+
+        </h1>
+        <br />
+
         <ImagesContainer
           images={this.state.images}
-          status={this.props.status}
+          Root={this.props.Root}
           history={this.props.history}
           noSaveButton={true}
           bgcolor={"warning"}
@@ -40,5 +53,4 @@ export default class Obervations extends Component {
       </div>
     )
   }
-
 }

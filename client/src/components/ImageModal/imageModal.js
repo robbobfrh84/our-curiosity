@@ -3,7 +3,7 @@ import './imageModal.sass'
 import { Modal, Button } from 'react-bootstrap'
 
 export default function ImageModal(props) {
-  const viewImage = props.status("READ", "lastViewedImage")
+  const viewImage = props.Root("READ", "lastViewedImage")
   return (
     <div>
       <div>

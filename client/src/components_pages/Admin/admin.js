@@ -1,5 +1,4 @@
 import React from "react"
-import Footer from "../../components/Footer/footer.js"
 import { ButtonToolbar, Button } from "react-bootstrap"
 import "./admin.sass"
 
@@ -35,8 +34,6 @@ export default function Admin() {
           <Button variant="outline-dark">Dark</Button> &nbsp;&nbsp;
           <Button variant="outline-link">Link</Button> &nbsp;&nbsp;
         </ButtonToolbar>
-
-        <Footer />
 
       </div>
   )

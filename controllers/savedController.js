@@ -4,7 +4,7 @@ const mongoose = require("mongoose")
 const SavedControllers = {
 
   findAll: function(req, res) {
-    console.log("🏞 🌌🌄 findAll Saved Images 🏞 🌌🌄")
+    console.log("\n💾 Attempting findAll Saved Images 💾\n")
     db.Saved.find()
       .then(dbModel => {
         res.json(dbModel)

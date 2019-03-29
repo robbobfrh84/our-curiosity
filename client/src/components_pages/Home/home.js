@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import Rover from "../../images/rover.svg"
-import SubTitle from "../../subTitle.txt"
+import SubTitle from "../../text_content/subTitle.txt"
 import "./home.sass"
 
 export default class Home extends Component {
@@ -22,8 +22,8 @@ export default class Home extends Component {
   }
 
   render() {
-    const userStatus = this.props.status("READ", "userStatus")
-    const manifest = this.props.status("READ", "manifest")
+    const userStatus = this.props.Root("READ", "userStatus")
+    const manifest = this.props.Root("READ", "manifest")
     return (
       <div className="home">
 

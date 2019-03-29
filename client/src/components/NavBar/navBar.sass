@@ -24,7 +24,7 @@
   .user-icon
     position: absolute
     top: 1px
-    left: 53px
+    right: 0px
     height: 35px
   .dropdown-box
     border-left: 1px solid #444
@@ -35,7 +35,7 @@
   .dropdown-toggle::after
     display: none
 
-@media (max-width: 991px)
+@media (max-width: 767px)
   .navbar
     .btn
       margin: auto
@@ -43,3 +43,10 @@
       margin: auto
     .spacer
       display: block
+    .dropdown-box
+      border-left: 0px solid #444
+    .user-icon-container
+      padding: 0px
+    .user-icon
+      position: relative
+      right: -10px

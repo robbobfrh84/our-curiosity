@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import API from "./utils/API"
+import Root from "./root.js"
 
 import NavBar from "./components/NavBar/navBar.js"
 import Footer from "./components/Footer/footer.js"
 import Home from "./components_pages/Home/home.js"
 import Images from "./components_pages/Images/images.js"
 import Observations from "./components_pages/Observations/observations.js"
+import UserSaved from "./components_pages/UserSaved/userSaved.js"
 import Admin from "./components_pages/Admin/admin.js"
 import SignIn from "./components_pages/SignIn/signIn.js"
 
@@ -20,10 +22,11 @@ class App extends Component {
     this.state = {
       userStatus: { userName: false, _id: false },
       manifest: {},
+      testy: "",
       images: { sol: "1000", page: "1", pages: {}},
       lastViewedImage: {}
     }
-    this.status = this.status.bind(this)
+    this.Root = Root.bind(this)
   }
 
   componentDidMount() {
@@ -32,17 +35,6 @@ class App extends Component {
       if (user.userName && user._id) this.setState({userStatus: user})
     }
     this.putGetAdmin()
-  }
-
-  status(method, state, data) {
-    switch (method) {
-      case "READ": return this.state[state]
-      case "SET": this.setState({[state]: data}); break
-      case "ADD_PAGE": this.addPage(data); break
-      case "SET_USER": this.setStatus(data); break
-      default:
-        return "unknown status update"
-    }
   }
 
   putGetAdmin() {
@@ -70,10 +62,10 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/signin"
-              render={route => <SignIn {...route} status={this.status} />}
+              render={route => <SignIn {...route} Root={this.Root} />}
             />
             <Route path="/"
-              render={() => <NavBarPages status={this.status} />}
+              render={() => <NavBarPages Root={this.Root} />}
             />
           </Switch>
         </BrowserRouter>
@@ -83,27 +75,28 @@ class App extends Component {
 
 }
 
-function NavBarPages({status}) {
-
+function NavBarPages({Root}) {
   return (
     <div>
-      <NavBar status={status} />
+      <NavBar Root={Root} />
+
       <Switch>
         <Route path="/(|home|landing)/"
-          render={route => <Home {...route} status={status} />}
+          render={route => <Home {...route} Root={Root} />}
         />
         <Route exact path="/images"
-          render={route => <Images {...route} status={status} />}
+          render={route => <Images {...route} Root={Root} />}
         />
         <Route exact path="/observations"
-          render={route => <Observations {...route} status={status}
-          />}
+          render={route => <Observations {...route} Root={Root} />}
+        />
+        <Route exact path="/usersaved"
+          render={route => <UserSaved {...route} Root={Root} />}
         />
         <Route exact path="/admin" render={Admin} />}/>
       </Switch>
 
       <Footer />
-
     </div>
   )
 }

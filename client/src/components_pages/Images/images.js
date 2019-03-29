@@ -13,7 +13,7 @@ export default class Images extends Component {
   }
 
   componentDidMount(){
-    const images = this.props.status("READ", "images")
+    const images = this.props.Root("READ", "images")
     const pageSaved = images.pages[images.sol+"_"+images.page]
     if (pageSaved) {
       this.setState({
@@ -25,7 +25,7 @@ export default class Images extends Component {
   }
 
   findPage = () => {
-    const images = this.props.status("READ", "images")
+    const images = this.props.Root("READ", "images")
     const pageSaved = images.pages[this.state.sol+"_"+this.state.page]
     if (pageSaved) {
       this.setState({images: pageSaved})
@@ -37,7 +37,7 @@ export default class Images extends Component {
             page: this.state.page,
             images: res.data.images
           }
-          this.props.status("ADD_PAGE", "images", page)
+          this.props.Root("ADD_PAGE", "images", page)
           this.setState({images: res.data.images})
         })
         .catch(err => console.log(err))
@@ -109,7 +109,7 @@ export default class Images extends Component {
 
         <ImagesContainer
           images={this.state.images}
-          status={this.props.status}
+          Root={this.props.Root}
           sol={this.state.sol}
           history={this.props.history}
           bgcolor={"secondary"}
