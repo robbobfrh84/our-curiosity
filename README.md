@@ -34,7 +34,7 @@ After updating and testing on the master branch run...
 
 Hypothetically, let's say we wanted to put the app in a subfolder (`webapp`) AND deploy it on a different branch...
 - First create the branch on Heroku
-  - ``
+  - `git subtree push --prefix webapp heroku testdeploy`
 - Then push that branch against Heroku's master
   -`git push heroku-dev webapp:master`
 
