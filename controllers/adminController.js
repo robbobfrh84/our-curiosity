@@ -5,26 +5,9 @@ const delay = 3600000 // 24h = 86400000, 1hr = 3600000, 1min = 60000
 
 const AdminControllers = {
 
-  findAll: function(req, res) {
-    checkForManifestUpdate()
-      .then(payload => { console.log('🤓 Check for Update ?...\n'+payload.msg)
-        if (payload.data) {
-          db.Admin
-            .findOneAndUpdate({name: "admin"},{$set:{mission_manifest:payload.data}})
-            .then(dbModel => { res.json(dbModel) })
-            .catch(err => res.status(422).json(err) )
-        } else {
-          db.Admin.find(req.query)
-            .then(dbModel => res.json(dbModel) )
-            .catch(err => res.status(422).json(err) )
-        }
-
-      })
-  },
-
   incrementPage: function(req, res) {
     checkForManifestUpdate()
-      .then(payload => { console.log('🧮 increment Visits 🧮 '+payload.msg)
+      .then(payload => { console.log('\n🧮 ➕➕ Increment visits attempt ➕➕ 🧮 \n\n'+" -- "+payload.msg+"\n")
         const edits = { $inc : {visits : 1} }
         if (payload.data) edits.$set = { mission_manifest: payload.data}
         db.Admin.findOneAndUpdate( {name: "admin"}, edits )
@@ -53,7 +36,10 @@ async function checkForManifestUpdate(){
                   landing_date : payload.data.rover.landing_date || "?",
                   max_date : payload.data.rover.max_date || "?"
               }
-              res({msg: "\n💥\n⏰ 👈 Time to Update Manifest", data: new_mission_manifest})
+              res({msg:
+                "💥 ⏰ 👈 Time to Update Mission Manifest\n -- 👍 Manifest Up to Date",
+                data: new_mission_manifest
+              })
             })
             .catch(err => res({msg:"🛰NASA API request error + "+err}))
         } else {

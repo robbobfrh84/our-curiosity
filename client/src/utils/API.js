@@ -2,20 +2,22 @@ import axios from "axios"
 
 export default {
 
-  // 🤖 Admin
+  // 🧮 Admin
   putGetAdmin: function() {
     return axios.put("/api/admin")
   },
 
-  // 🌌 Page
+  // 📄 Page
   findPage: function(sol, page) {
     return axios.get("/api/page/"+sol+"/"+page)
   },
 
-  // 👥 User
-  getUsers: function() {
-    return axios.get("/api/user")
+  // 💾 saved
+  getAllSavedImages: function(image, user){
+    return axios.get("/api/saved")
   },
+
+  // 👥 User
   createUser: function(newUser){
     return axios.post("/api/user", newUser)
   },
@@ -24,14 +26,6 @@ export default {
   },
   saveUserImage: function(user){
     return axios.post("/api/user/save", user)
-  },
-
-  // 🏞 saved
-  // saveImage: function(image, user){
-  //   return axios.post("/api/saved", image)
-  // },
-  getAllSavedImages: function(image, user){
-    return axios.get("/api/saved")
   }
 
 }

@@ -7,6 +7,8 @@ import UserIcon from '../../images/user-icon1.svg'
 
 export default function NavBar(props) {
 
+  const userStatus = props.Root("READ", "userStatus")
+
   return (
     <Navbar expand="md" className="navbar bg-secondary" >
 
@@ -50,7 +52,7 @@ export default function NavBar(props) {
             <hr></hr>
           </div>
 
-            {(!props.userStatus.userName || props.userStatus.userName === "false") &&
+            {(!userStatus.userName || userStatus.userName === "false") &&
               <Link to="/signin" className="full">
                 <Button variant="outline-success bg-light">
 
@@ -60,13 +62,13 @@ export default function NavBar(props) {
               </Link>
             }
 
-            {(props.userStatus.userName && props.userStatus.userName !== "false") &&
+            {(userStatus.userName && userStatus.userName !== "false") &&
               <Dropdown alignRight>
 
                 <Dropdown.Toggle id="dropdown-basic" className="dropdown-box"
                   variant="outline-none text-white-bbb">
 
-                  {props.userStatus.userName}
+                  {userStatus.userName}
 
                   <span className="user-icon-container">
                     <img src={UserIcon} alt="UserIcon" className="user-icon"/>
@@ -74,22 +76,21 @@ export default function NavBar(props) {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu className="bg-primary" title="Dropdown right">
-                  <Link to="/observations" className="text-gray-444  dropdown-item" >
+                  <Link to="/usersaved" className="text-gray-444  dropdown-item" >
 
-                    Saved Images
+                    My Saved Images
 
                   </Link>
                   <br />
                   <Dropdown.Item className="text-gray-444"
-                    onClick={props.setStatus}>
-
+                    onClick={()=>props.Root("SET_USER", "userStatus", {})}>
                     Log Out
 
                   </Dropdown.Item>
                   <hr />
                   <Dropdown.Item className="text-white" disabled>
 
-                    {props.userStatus.userName}
+                    {userStatus.userName}
 
                   </Dropdown.Item>
                 </Dropdown.Menu>
@@ -99,7 +100,7 @@ export default function NavBar(props) {
 
         </Nav>
       </Navbar.Collapse>
-      
+
     </Navbar>
   )
 }

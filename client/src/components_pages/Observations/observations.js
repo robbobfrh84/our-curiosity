@@ -1,17 +1,12 @@
 import React, { Component } from "react"
-import { Card } from "react-bootstrap"
 import API from "../../utils/API"
+import ImagesContainer from "../../components/ImagesContainer/imagesContainer.js"
 import "./observations.sass"
 
 export default class Obervations extends Component {
 
-  constructor(props){
-    super()
-    this.state = {
-      pageData: props.pageData,
-      forWho: props.for,
-      images: []
-    }
+  state = {
+    images: []
   }
 
   componentDidMount(){
@@ -21,9 +16,18 @@ export default class Obervations extends Component {
   getAllSavedImages = () => {
     API.getAllSavedImages()
       .then(res => {
-        this.setState({images: res.data || []})
+        this.curateImages(res.data)
       })
       .catch(err => console.log(err))
+  }
+
+  curateImages(img){
+    let image= []
+    for (var i = 0; i < img.length; i++) {
+      img[i].image.totalSaved = img[i].totalSaved
+      image.push(img[i].image)
+    }
+    this.setState({images: image})
   }
 
   render() {
@@ -32,32 +36,21 @@ export default class Obervations extends Component {
 
         <br /><br />
         <h1 className="text-info">
-          Community Observations
+
+          &#x2729; Recently Saved Images &#x2729;
+
         </h1>
-        <br /><br />
+        <br />
 
-        <div className="card-container">
-        {this.state.images.length > 0 &&
-          this.state.images.map( (img, i) => (
-            <Card className="card bg-secondary" key={i} >
-              <Card.Img variant="top" src={img.image.img_src} />
-              <Card.Body>
-               <Card.Title>ID#{img.image.id}</Card.Title>
-               <Card.Text>
-                 Saved ({img.totalSaved}) times
-               </Card.Text>
-              </Card.Body>
-            </Card>
-          ))
-        }
-        </div>
+        <ImagesContainer
+          images={this.state.images}
+          Root={this.props.Root}
+          history={this.props.history}
+          noSaveButton={true}
+          bgcolor={"warning"}
+        />
 
-        <br /><br />
       </div>
     )
   }
-
 }
-
-// {!this.state.images.length > 0 && <Footer /> }
-// {this.state.images.length > 0 && <Footer force="true"/> }
