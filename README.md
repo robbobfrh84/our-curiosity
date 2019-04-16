@@ -25,7 +25,7 @@ First time getting started
 Starting development enviroment
 - $`mongod`
   - Not requred: $`mongo` will test the deamon is running which should put you in the mongodb cli `>`.
-- $`npm run seed all` > after completion, you may need to [Control+c] to breakout of the process.
+- $`npm run seed all` > after completion, you may need to [Control+c] to breakout of the process if hangs.
 - $`npm start`
 
 # Deployment
